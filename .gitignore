@@ -63,3 +63,5 @@ monodroid*.msi
 /CompiledContent/Windows/IgnoreMe.dll
 *.cachefile
 *.dll
+*.manifest
+CheckersGUI/Content/Content.mgcb
