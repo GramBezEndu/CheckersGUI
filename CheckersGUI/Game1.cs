@@ -1,6 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CheckersLogic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
+using System.IO;
+using CheckersGUI.Draw;
 
 namespace CheckersGUI
 {
@@ -11,11 +15,17 @@ namespace CheckersGUI
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Board Board;
+        /// <summary>
+        /// All textures
+        /// </summary>
+        public static Dictionary<string, Texture2D> Textures = new Dictionary<string, Texture2D>();
         
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            Board = new Board();
         }
 
         /// <summary>
@@ -41,6 +51,22 @@ namespace CheckersGUI
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            LoadTextures();
+        }
+
+        private void LoadTextures()
+        {
+            DirectoryInfo directoryInfo = new DirectoryInfo(Content.RootDirectory);
+            if (!directoryInfo.Exists)
+                throw new DirectoryNotFoundException();
+            FileInfo[] files = directoryInfo.GetFiles("*.*");
+            foreach (FileInfo file in files)
+            {
+                string key = Path.GetFileNameWithoutExtension(file.Name);
+                if (key == "Font")
+                    continue;
+                Textures[key] = Content.Load<Texture2D>(Directory.GetCurrentDirectory() + "/Content/" + key);
+            }
         }
 
         /// <summary>
@@ -76,7 +102,9 @@ namespace CheckersGUI
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-
+            spriteBatch.Begin();
+            Board.Draw(new Vector2(50, 50), spriteBatch);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
