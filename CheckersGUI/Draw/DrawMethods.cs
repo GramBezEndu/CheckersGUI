@@ -34,32 +34,13 @@ namespace CheckersGUI.Draw
             for(int i=0;i<board.squares.Length;i++)
             {
                 for(int j=0;j<board.squares[i].Length;j++)
-                    (board.squares[i][j] as DrawableComponent).Draw(new Vector2(pos.X + j*32, pos.Y + i*32), spriteBatch);
-            }
-
-            //Draw pawns (hard coded texture width and height)
-            foreach(var pawn in board.pawns)
-            {
-                //Index of square in squares
-                int iIndex = -1, jIndex = -1;
-                if (pawn.position == null)
-                    continue;
-                else
                 {
-                    //Find which square it is
-                    //Note: if we keep xIndex and yIndex in square then it can be written simpler
-                    for (int i = 0; i < board.squares.Length; i++)
+                    (board.squares[i][j] as DrawableComponent).Draw(new Vector2(pos.X + j * 32, pos.Y + i * 32), spriteBatch);
+                    if(board.squares[i][j] is BrownSquare)
                     {
-                        for (int j = 0; j < board.squares[i].Length; j++)
-                        {
-                            if (pawn.position == board.squares[i][j])
-                            {
-                                iIndex = i;
-                                jIndex = j;
-                                (pawn as DrawableComponent).Draw(new Vector2(pos.X + j*32, pos.Y + i*32), spriteBatch);
-                                continue;
-                            }
-                        }
+                        var pawn = (board.squares[i][j] as BrownSquare).Pawn;
+                        if (pawn != null)
+                            (pawn as DrawableComponent).Draw(new Vector2(pos.X + j * 32, pos.Y + i * 32), spriteBatch);
                     }
                 }
             }

@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.IO;
 using CheckersGUI.Draw;
+using CheckersGUI.Update;
 
 namespace CheckersGUI
 {
@@ -15,7 +16,9 @@ namespace CheckersGUI
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        public static InputManager inputManager = new InputManager();
         Board Board;
+        Vector2 boardPosition = new Vector2(50, 50);
         /// <summary>
         /// All textures
         /// </summary>
@@ -37,7 +40,7 @@ namespace CheckersGUI
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            this.IsMouseVisible = true;
             base.Initialize();
         }
 
@@ -89,7 +92,8 @@ namespace CheckersGUI
                 Exit();
 
             // TODO: Add your update logic here
-
+            inputManager.Update(gameTime);
+            Board.Update(boardPosition, gameTime);
             base.Update(gameTime);
         }
 
@@ -103,7 +107,7 @@ namespace CheckersGUI
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            Board.Draw(new Vector2(50, 50), spriteBatch);
+            Board.Draw(boardPosition, spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }
