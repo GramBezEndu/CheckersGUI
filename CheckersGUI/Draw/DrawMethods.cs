@@ -1,4 +1,5 @@
 ﻿using CheckersLogic;
+using CheckersLogic.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -17,9 +18,14 @@ namespace CheckersGUI.Draw
         /// <param name="c"></param>
         /// <param name="pos"></param>
         /// <param name="spriteBatch"></param>
-        public static void Draw(this DrawableComponent c, Vector2 pos, SpriteBatch spriteBatch)
+        public static void Draw(this DrawableComponent c, Vector2 pos, SpriteBatch spriteBatch, Color color)
         {
-            spriteBatch.Draw(Game1.Textures[c.GetType().Name], pos, null, null, null, 0f, new Vector2(1f, 1f), Color.White, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Game1.Textures[c.GetType().Name], pos, null, null, null, 0f, new Vector2(1f, 1f), color, SpriteEffects.None, 0f);
+        }
+
+        public static void Draw(this GameState gameState, Vector2 pos, SpriteBatch spriteBatch)
+        {
+            gameState.board.Draw(pos, spriteBatch);
         }
 
         /// <summary>
@@ -35,12 +41,15 @@ namespace CheckersGUI.Draw
             {
                 for(int j=0;j<board.squares[i].Length;j++)
                 {
-                    (board.squares[i][j] as DrawableComponent).Draw(new Vector2(pos.X + j * 32, pos.Y + i * 32), spriteBatch);
+                    if (board.squares[i][j] == board.currentlySelectedSquare)
+                        (board.squares[i][j] as DrawableComponent).Draw(new Vector2(pos.X + j * 32, pos.Y + i * 32), spriteBatch, Color.Green);
+                    else
+                        (board.squares[i][j] as DrawableComponent).Draw(new Vector2(pos.X + j * 32, pos.Y + i * 32), spriteBatch, Color.White);
                     if(board.squares[i][j] is BrownSquare)
                     {
                         var pawn = (board.squares[i][j] as BrownSquare).Pawn;
                         if (pawn != null)
-                            (pawn as DrawableComponent).Draw(new Vector2(pos.X + j * 32, pos.Y + i * 32), spriteBatch);
+                            (pawn as DrawableComponent).Draw(new Vector2(pos.X + j * 32, pos.Y + i * 32), spriteBatch, Color.White);
                     }
                 }
             }

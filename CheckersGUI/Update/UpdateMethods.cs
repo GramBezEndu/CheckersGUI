@@ -1,5 +1,6 @@
 ﻿using CheckersGUI.Draw;
 using CheckersLogic;
+using CheckersLogic.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -12,6 +13,11 @@ namespace CheckersGUI.Update
 {
     public static class UpdateMethods
     {
+        public static void Update(this GameState gameState, Vector2 boardPosition, GameTime gameTime)
+        {
+            gameState.board.Update(boardPosition, gameTime);
+        }
+
         public static void Update(this Board board, Vector2 boardPosition, GameTime gameTime)
         {
             //Check for mouse input (hard coded texture width and height)
@@ -27,10 +33,13 @@ namespace CheckersGUI.Update
                     {
                         if(Game1.inputManager.CurrentMouseState.LeftButton == ButtonState.Pressed && Game1.inputManager.PreviousMouseState.LeftButton == ButtonState.Released)
                         {
-                            if (board.currentlySelectedSquare == null)
-                                board.currentlySelectedSquare = board.squares[i][j];
-                            else
-                                board.MovePawn(board.currentlySelectedSquare, board.squares[i][j]);
+                            if(board.squares[i][j] is BrownSquare)
+                            {
+                                if (board.currentlySelectedSquare == null)
+                                    board.currentlySelectedSquare = board.squares[i][j] as BrownSquare;
+                                else
+                                    board.MovePawn(board.currentlySelectedSquare, board.squares[i][j] as BrownSquare);
+                            }
                         }
 
                     }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using CheckersGUI.Draw;
 using CheckersGUI.Update;
+using CheckersLogic.States;
 
 namespace CheckersGUI
 {
@@ -17,8 +18,10 @@ namespace CheckersGUI
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         public static InputManager inputManager = new InputManager();
-        Board Board;
-        Vector2 boardPosition = new Vector2(50, 50);
+        GameState currentState;
+        Vector2 statePosition = new Vector2(300, 50);
+        //Board Board;
+        //Vector2 boardPosition = new Vector2(50, 50);
         /// <summary>
         /// All textures
         /// </summary>
@@ -28,7 +31,7 @@ namespace CheckersGUI
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            Board = new Board();
+            currentState = new PlayerVsPlayer();
         }
 
         /// <summary>
@@ -93,7 +96,7 @@ namespace CheckersGUI
 
             // TODO: Add your update logic here
             inputManager.Update(gameTime);
-            Board.Update(boardPosition, gameTime);
+            currentState.Update(statePosition, gameTime);
             base.Update(gameTime);
         }
 
@@ -107,7 +110,7 @@ namespace CheckersGUI
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            Board.Draw(boardPosition, spriteBatch);
+            currentState.Draw(statePosition, spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }
