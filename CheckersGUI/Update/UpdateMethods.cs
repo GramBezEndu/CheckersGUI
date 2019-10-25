@@ -16,6 +16,9 @@ namespace CheckersGUI.Update
         public static void Update(this GameState gameState, Vector2 statePosition, GameTime gameTime)
         {
             gameState.board.Update(new Vector2(statePosition.X + DrawMethods.boardPlacement.X, statePosition.Y + DrawMethods.boardPlacement.Y), gameTime);
+            //Reset is now set to "R" button
+            if (Game1.inputManager.CurrentKeyboardState.IsKeyDown(Keys.R) && Game1.inputManager.PreviousKeyboardState.IsKeyUp(Keys.R))
+                gameState.board.ResetMove();
         }
 
         public static void Update(this Board board, Vector2 boardPosition, GameTime gameTime)

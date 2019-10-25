@@ -31,6 +31,8 @@ namespace CheckersGUI.Draw
         {
             //Draw text: what gamemode it is
             spriteBatch.DrawString(Game1.Font, gameState.GetType().Name, new Vector2(statePosition.X, statePosition.Y), Color.Black);
+            //Draw text: how to reset (now only keyboard button)
+            spriteBatch.DrawString(Game1.Font, "Reset move [R]", new Vector2(statePosition.X, statePosition.Y + 60), Color.Black);
             gameState.board.Draw(new Vector2(statePosition.X + boardPlacement.X, statePosition.Y + boardPlacement.Y), spriteBatch);
         }
 

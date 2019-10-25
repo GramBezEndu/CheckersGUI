@@ -12,11 +12,15 @@ namespace CheckersGUI
     {
         public MouseState CurrentMouseState;
         public MouseState PreviousMouseState;
+        public KeyboardState CurrentKeyboardState;
+        public KeyboardState PreviousKeyboardState;
 
         public void Update(GameTime gameTime)
         {
             PreviousMouseState = CurrentMouseState;
             CurrentMouseState = Mouse.GetState();
+            PreviousKeyboardState = CurrentKeyboardState;
+            CurrentKeyboardState = Keyboard.GetState();
         }
     }
 }
