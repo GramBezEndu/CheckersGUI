@@ -19,6 +19,9 @@ namespace CheckersGUI.Update
             //Reset is now set to "R" button
             if (Game1.inputManager.CurrentKeyboardState.IsKeyDown(Keys.R) && Game1.inputManager.PreviousKeyboardState.IsKeyUp(Keys.R))
                 gameState.board.ResetMove();
+            //Accept move is now set to "A" button
+            if (Game1.inputManager.CurrentKeyboardState.IsKeyDown(Keys.A) && Game1.inputManager.PreviousKeyboardState.IsKeyUp(Keys.A))
+                gameState.board.AcceptMove();
         }
 
         public static void Update(this Board board, Vector2 boardPosition, GameTime gameTime)

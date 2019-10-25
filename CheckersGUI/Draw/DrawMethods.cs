@@ -31,8 +31,10 @@ namespace CheckersGUI.Draw
         {
             //Draw text: what gamemode it is
             spriteBatch.DrawString(Game1.Font, gameState.GetType().Name, new Vector2(statePosition.X, statePosition.Y), Color.Black);
-            //Draw text: how to reset (now only keyboard button)
-            spriteBatch.DrawString(Game1.Font, "Reset move [R]", new Vector2(statePosition.X, statePosition.Y + 60), Color.Black);
+            //Draw text: how to reset move (now only keyboard button)
+            spriteBatch.DrawString(Game1.Font, "Reset move [R]", new Vector2(statePosition.X, statePosition.Y + 40), Color.Black);
+            //Draw text: how to accept move (now only keyboard button)
+            spriteBatch.DrawString(Game1.Font, "Accept move [A]", new Vector2(statePosition.X, statePosition.Y + 80), Color.Black);
             gameState.board.Draw(new Vector2(statePosition.X + boardPlacement.X, statePosition.Y + boardPlacement.Y), spriteBatch);
         }
 
@@ -49,8 +51,13 @@ namespace CheckersGUI.Draw
             {
                 for(int j=0;j<board.squares[i].Length;j++)
                 {
+                    //Draw starting square
                     if (board.squares[i][j] == board.GetSelectedSquareAsStart())
                         (board.squares[i][j] as DrawableComponent).Draw(new Vector2(pos.X + j * 32, pos.Y + i * 32), spriteBatch, Color.Green);
+                    //Draw squares selected by user to the end path
+                    else if (board.selectedSquaresToEnd.Contains(board.squares[i][j]))
+                        (board.squares[i][j] as DrawableComponent).Draw(new Vector2(pos.X + j * 32, pos.Y + i * 32), spriteBatch, Color.Red);
+                    //Draw rest of the squares
                     else
                         (board.squares[i][j] as DrawableComponent).Draw(new Vector2(pos.X + j * 32, pos.Y + i * 32), spriteBatch, Color.White);
                     if(board.squares[i][j] is BrownSquare)
@@ -62,7 +69,7 @@ namespace CheckersGUI.Draw
                 }
             }
             //Draw text: who turn it is
-            spriteBatch.DrawString(Game1.Font, board.Message, new Vector2(pos.X - 32, pos.Y -32), Color.Black);
+            spriteBatch.DrawString(Game1.Font, board.TurnMessage, new Vector2(pos.X - 32, pos.Y -32), Color.Black);
         }
     }
 }
