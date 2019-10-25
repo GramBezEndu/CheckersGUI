@@ -13,9 +13,9 @@ namespace CheckersGUI.Update
 {
     public static class UpdateMethods
     {
-        public static void Update(this GameState gameState, Vector2 boardPosition, GameTime gameTime)
+        public static void Update(this GameState gameState, Vector2 statePosition, GameTime gameTime)
         {
-            gameState.board.Update(boardPosition, gameTime);
+            gameState.board.Update(new Vector2(statePosition.X + DrawMethods.boardPlacement.X, statePosition.Y + DrawMethods.boardPlacement.Y), gameTime);
         }
 
         public static void Update(this Board board, Vector2 boardPosition, GameTime gameTime)
@@ -35,10 +35,8 @@ namespace CheckersGUI.Update
                         {
                             if(board.squares[i][j] is BrownSquare)
                             {
-                                if (board.currentlySelectedSquare == null)
-                                    board.currentlySelectedSquare = board.squares[i][j] as BrownSquare;
-                                else
-                                    board.MovePawn(board.currentlySelectedSquare, board.squares[i][j] as BrownSquare);
+                                //Call OnInteraction method
+                                board.OnInteraction(board.squares[i][j] as BrownSquare);
                             }
                         }
 

@@ -13,6 +13,10 @@ namespace CheckersGUI.Draw
     public static class DrawMethods
     {
         /// <summary>
+        /// Board placement related to start of the scene
+        /// </summary>
+        public static readonly Vector2 boardPlacement = new Vector2(300, 50);
+        /// <summary>
         /// Draw method for pawns and squares
         /// </summary>
         /// <param name="c"></param>
@@ -23,9 +27,11 @@ namespace CheckersGUI.Draw
             spriteBatch.Draw(Game1.Textures[c.GetType().Name], pos, null, null, null, 0f, new Vector2(1f, 1f), color, SpriteEffects.None, 0f);
         }
 
-        public static void Draw(this GameState gameState, Vector2 pos, SpriteBatch spriteBatch)
+        public static void Draw(this GameState gameState, Vector2 statePosition, SpriteBatch spriteBatch)
         {
-            gameState.board.Draw(pos, spriteBatch);
+            //Draw text: what gamemode it is
+            spriteBatch.DrawString(Game1.Font, gameState.GetType().Name, new Vector2(statePosition.X, statePosition.Y), Color.Black);
+            gameState.board.Draw(new Vector2(statePosition.X + boardPlacement.X, statePosition.Y + boardPlacement.Y), spriteBatch);
         }
 
         /// <summary>
@@ -41,7 +47,7 @@ namespace CheckersGUI.Draw
             {
                 for(int j=0;j<board.squares[i].Length;j++)
                 {
-                    if (board.squares[i][j] == board.currentlySelectedSquare)
+                    if (board.squares[i][j] == board.GetSelectedSquareAsStart())
                         (board.squares[i][j] as DrawableComponent).Draw(new Vector2(pos.X + j * 32, pos.Y + i * 32), spriteBatch, Color.Green);
                     else
                         (board.squares[i][j] as DrawableComponent).Draw(new Vector2(pos.X + j * 32, pos.Y + i * 32), spriteBatch, Color.White);
@@ -53,6 +59,8 @@ namespace CheckersGUI.Draw
                     }
                 }
             }
+            //Draw text: who turn it is
+            spriteBatch.DrawString(Game1.Font, board.Message, new Vector2(pos.X - 32, pos.Y -32), Color.Black);
         }
     }
 }

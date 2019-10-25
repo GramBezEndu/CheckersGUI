@@ -19,14 +19,15 @@ namespace CheckersGUI
         SpriteBatch spriteBatch;
         public static InputManager inputManager = new InputManager();
         GameState currentState;
-        Vector2 statePosition = new Vector2(300, 50);
+        Vector2 statePosition = new Vector2(0, 0);
         //Board Board;
         //Vector2 boardPosition = new Vector2(50, 50);
         /// <summary>
         /// All textures
         /// </summary>
         public static Dictionary<string, Texture2D> Textures = new Dictionary<string, Texture2D>();
-        
+        public static SpriteFont Font;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -58,6 +59,7 @@ namespace CheckersGUI
 
             // TODO: use this.Content to load your game content here
             LoadTextures();
+            Font = Content.Load<SpriteFont>("Font");
         }
 
         private void LoadTextures()
