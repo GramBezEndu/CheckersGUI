@@ -24,7 +24,28 @@ namespace CheckersGUI.Draw
         /// <param name="spriteBatch"></param>
         public static void Draw(this DrawableComponent c, Vector2 pos, SpriteBatch spriteBatch, Color color)
         {
-            spriteBatch.Draw(Game1.Textures[c.GetType().Name], pos, null, null, null, 0f, new Vector2(1f, 1f), color, SpriteEffects.None, 0f);
+            if (c is Pawn)
+                (c as Pawn).Draw(pos, spriteBatch, color);
+            else
+                spriteBatch.Draw(Game1.Textures[c.GetType().Name], pos, null, null, null, 0f, new Vector2(1f, 1f), color, SpriteEffects.None, 0f);
+        }
+
+        public static void Draw(this Pawn c, Vector2 pos, SpriteBatch spriteBatch, Color color)
+        {
+            if(c is ManPawn)
+            {
+                if(c.IsWhite)
+                    spriteBatch.Draw(Game1.Textures["WhiteMan"], pos, null, null, null, 0f, new Vector2(1f, 1f), color, SpriteEffects.None, 0f);
+                else
+                    spriteBatch.Draw(Game1.Textures["BlackMan"], pos, null, null, null, 0f, new Vector2(1f, 1f), color, SpriteEffects.None, 0f);
+            }
+            else if(c is Dame)
+            {
+                if (c.IsWhite)
+                    spriteBatch.Draw(Game1.Textures["WhiteDame"], pos, null, null, null, 0f, new Vector2(1f, 1f), color, SpriteEffects.None, 0f);
+                else
+                    spriteBatch.Draw(Game1.Textures["BlackDame"], pos, null, null, null, 0f, new Vector2(1f, 1f), color, SpriteEffects.None, 0f);
+            }
         }
 
         public static void Draw(this GameState gameState, Vector2 statePosition, SpriteBatch spriteBatch)
