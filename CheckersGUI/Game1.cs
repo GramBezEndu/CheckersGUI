@@ -18,7 +18,7 @@ namespace CheckersGUI
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         public static InputManager inputManager = new InputManager();
-        GameState currentState;
+        State currentState;
         Vector2 statePosition = new Vector2(0, 0);
         //Board Board;
         //Vector2 boardPosition = new Vector2(50, 50);

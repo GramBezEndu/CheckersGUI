@@ -48,6 +48,18 @@ namespace CheckersGUI.Draw
             }
         }
 
+        public static void Draw(this State state, Vector2 statePosition, SpriteBatch spriteBatch)
+        {
+            if(state is GameState)
+            {
+                (state as GameState).Draw(statePosition, spriteBatch);
+            }
+            else if(state is MenuState)
+            {
+                //
+            }
+        }
+
         public static void Draw(this GameState gameState, Vector2 statePosition, SpriteBatch spriteBatch)
         {
             //Draw text: what gamemode it is

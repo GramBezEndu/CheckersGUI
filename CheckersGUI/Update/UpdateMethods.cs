@@ -24,6 +24,18 @@ namespace CheckersGUI.Update
                 gameState.board.AcceptMove();
         }
 
+        public static void Update(this State state, Vector2 statePosition, GameTime gameTime)
+        {
+            if(state is GameState)
+            {
+                (state as GameState).Update(statePosition, gameTime);
+            }
+            else if(state is MenuState)
+            {
+                //
+            }
+        }
+
         public static void Update(this Board board, Vector2 boardPosition, GameTime gameTime)
         {
             //Check for mouse input (hard coded texture width and height)
