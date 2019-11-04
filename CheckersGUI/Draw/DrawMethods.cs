@@ -86,18 +86,18 @@ namespace CheckersGUI.Draw
                 {
                     //Draw starting square
                     if (board.squares[i][j] == board.GetSelectedSquareAsStart())
-                        (board.squares[i][j] as DrawableComponent).Draw(new Vector2(pos.X + j * 32, pos.Y + i * 32), spriteBatch, Color.Green);
+                        (board.squares[i][j] as DrawableComponent).Draw(new Vector2(pos.X + i * 32, pos.Y + j * 32), spriteBatch, Color.Green);
                     //Draw squares selected by user to the end path
                     else if (board.selectedSquaresToEnd.Contains(board.squares[i][j]))
-                        (board.squares[i][j] as DrawableComponent).Draw(new Vector2(pos.X + j * 32, pos.Y + i * 32), spriteBatch, Color.Red);
+                        (board.squares[i][j] as DrawableComponent).Draw(new Vector2(pos.X + i * 32, pos.Y + j * 32), spriteBatch, Color.Red);
                     //Draw rest of the squares
                     else
-                        (board.squares[i][j] as DrawableComponent).Draw(new Vector2(pos.X + j * 32, pos.Y + i * 32), spriteBatch, Color.White);
+                        (board.squares[i][j] as DrawableComponent).Draw(new Vector2(pos.X + i * 32, pos.Y + j * 32), spriteBatch, Color.White);
                     if(board.squares[i][j] is BrownSquare)
                     {
                         var pawn = (board.squares[i][j] as BrownSquare).Pawn;
                         if (pawn != null)
-                            (pawn as DrawableComponent).Draw(new Vector2(pos.X + j * 32, pos.Y + i * 32), spriteBatch, Color.White);
+                            (pawn as DrawableComponent).Draw(new Vector2(pos.X + i * 32, pos.Y + j * 32), spriteBatch, Color.White);
                     }
                 }
             }

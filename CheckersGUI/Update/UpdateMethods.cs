@@ -17,48 +17,63 @@ namespace CheckersGUI.Update
         {
             gameState.board.Update(new Vector2(statePosition.X + DrawMethods.boardPlacement.X, statePosition.Y + DrawMethods.boardPlacement.Y), gameTime);
             //Reset is now set to "R" button
-            if (Game1.inputManager.CurrentKeyboardState.IsKeyDown(Keys.R) && Game1.inputManager.PreviousKeyboardState.IsKeyUp(Keys.R))
-                gameState.board.ResetMove();
-            //Accept move is now set to "A" button
-            if (Game1.inputManager.CurrentKeyboardState.IsKeyDown(Keys.A) && Game1.inputManager.PreviousKeyboardState.IsKeyUp(Keys.A))
+            if (gameState is PlayerVsComputer && !gameState.board.IsWhiteTurn)
             {
-                // TODO: Uzupełnić metodę
-                bool moveAccepted = gameState.board.AcceptMove();
-                if (!moveAccepted)
-                {
-                    // TODO: wypisać komunikat użytkownikowi
-                    throw new NotImplementedException();
-                }
-                // TODO: Wyodrębnić to jako metodę update na state PlayerVsComputer może?
-                else if (moveAccepted && gameState is PlayerVsComputer && !gameState.board.IsWhiteTurn)
-                {
-                    //Ruch komputera
-                    RandomComputerAgent agent = new RandomComputerAgent(gameState.board);
-                    // Wyszukanie najlepszego rozwiązania
-                    (Pawn, List<BrownSquare>) move = agent.SearchForBestMove();
-                    gameState.board.SetSelectedSquareAsStart((BrownSquare) move.Item1.Position);
-                    gameState.board.selectedSquaresToEnd = move.Item2;
+                System.Threading.Thread.Sleep(500);
+                //Ruch komputera
+                RandomComputerAgent agent = new RandomComputerAgent(gameState.board);
+                // Wyszukanie najlepszego rozwiązania
+                (Pawn, List<BrownSquare>) move = agent.SearchForBestMove();
+                gameState.board.SetSelectedSquareAsStart((BrownSquare)move.Item1.Position);
+                gameState.board.selectedSquaresToEnd = move.Item2;
 
-                    gameState.board.AcceptMove();
-                    //if(move.Item2.Count == 1)
+                gameState.board.AcceptMove();
+            }
+            else
+            {
+                if (Game1.inputManager.CurrentKeyboardState.IsKeyDown(Keys.R) && Game1.inputManager.PreviousKeyboardState.IsKeyUp(Keys.R))
+                    gameState.board.ResetMove();
+                //Accept move is now set to "A" button
+                if (Game1.inputManager.CurrentKeyboardState.IsKeyDown(Keys.A) && Game1.inputManager.PreviousKeyboardState.IsKeyUp(Keys.A))
+                {
+                    // TODO: Uzupełnić metodę
+                    bool moveAccepted = gameState.board.AcceptMove();
+                    if (!moveAccepted)
+                    {
+                        // TODO: wypisać komunikat użytkownikowi
+                        throw new NotImplementedException();
+                    }
+                    //// TODO: Wyodrębnić to jako metodę update na state PlayerVsComputer może?
+                    //else if (moveAccepted && gameState is PlayerVsComputer && !gameState.board.IsWhiteTurn)
                     //{
-                    //    int xDistance = move.Item2[0].xIndex - move.Item1.Position.xIndex;
-                    //    int yDistance = move.Item2[0].yIndex - move.Item1.Position.yIndex;
-                    //    if (Math.Abs(xDistance) > 1 && Math.Abs(yDistance) > 1)
-                    //    {
-                    //        //Ruch jest biciem
-                    //        throw new NotImplementedException();
+                    //    System.Threading.Thread.Sleep(500);
+                    //    //Ruch komputera
+                    //    RandomComputerAgent agent = new RandomComputerAgent(gameState.board);
+                    //    // Wyszukanie najlepszego rozwiązania
+                    //    (Pawn, List<BrownSquare>) move = agent.SearchForBestMove();
+                    //    gameState.board.SetSelectedSquareAsStart((BrownSquare)move.Item1.Position);
+                    //    gameState.board.selectedSquaresToEnd = move.Item2;
 
-                    //    }
-                    //    gameState.board.MovePawn((BrownSquare)move.Item1.Position, move.Item2[0]);
+                    //    gameState.board.AcceptMove();
+                    //    //if(move.Item2.Count == 1)
+                    //    //{
+                    //    //    int xDistance = move.Item2[0].xIndex - move.Item1.Position.xIndex;
+                    //    //    int yDistance = move.Item2[0].yIndex - move.Item1.Position.yIndex;
+                    //    //    if (Math.Abs(xDistance) > 1 && Math.Abs(yDistance) > 1)
+                    //    //    {
+                    //    //        //Ruch jest biciem
+                    //    //        throw new NotImplementedException();
+
+                    //    //    }
+                    //    //    gameState.board.MovePawn((BrownSquare)move.Item1.Position, move.Item2[0]);
+                    //    //}
+                    //    //else
+                    //    //{
+                    //    //    // Wielokrotny ruch
+                    //    //    gameState.board.MovePawn((BrownSquare)move.Item1.Position, move.Item2.Last());
+                    //    //    throw new NotImplementedException();
+                    //    //}
                     //}
-                    //else
-                    //{
-                    //    // Wielokrotny ruch
-                    //    gameState.board.MovePawn((BrownSquare)move.Item1.Position, move.Item2.Last());
-                    //    throw new NotImplementedException();
-                    //}
-                    
 
                 }
             }
@@ -88,7 +103,7 @@ namespace CheckersGUI.Update
 
                     //bool isHovering = false;
 
-                    if(mouseRectangle.Intersects(new Rectangle((int)(boardPosition.X + j * 32), (int)(boardPosition.Y + i * 32), 32, 32)))
+                    if(mouseRectangle.Intersects(new Rectangle((int)(boardPosition.X + i * 32), (int)(boardPosition.Y + j * 32), 32, 32)))
                     {
                         if(Game1.inputManager.CurrentMouseState.LeftButton == ButtonState.Pressed && Game1.inputManager.PreviousMouseState.LeftButton == ButtonState.Released)
                         {
