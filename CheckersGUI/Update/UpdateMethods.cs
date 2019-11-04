@@ -36,24 +36,28 @@ namespace CheckersGUI.Update
                     RandomComputerAgent agent = new RandomComputerAgent(gameState.board);
                     // Wyszukanie najlepszego rozwiązania
                     (Pawn, List<BrownSquare>) move = agent.SearchForBestMove();
-                    if(move.Item2.Count == 1)
-                    {
-                        int xDistance = move.Item2[0].xIndex - move.Item1.Position.xIndex;
-                        int yDistance = move.Item2[0].yIndex - move.Item1.Position.yIndex;
-                        if (Math.Abs(xDistance) > 1 && Math.Abs(yDistance) > 1)
-                        {
-                            //Ruch jest biciem
-                            throw new NotImplementedException();
+                    gameState.board.SetSelectedSquareAsStart((BrownSquare) move.Item1.Position);
+                    gameState.board.selectedSquaresToEnd = move.Item2;
 
-                        }
-                        gameState.board.MovePawn((BrownSquare)move.Item1.Position, move.Item2[0]);
-                    }
-                    else
-                    {
-                        // Wielokrotny ruch
-                        gameState.board.MovePawn((BrownSquare)move.Item1.Position, move.Item2.Last());
-                        throw new NotImplementedException();
-                    }
+                    gameState.board.AcceptMove();
+                    //if(move.Item2.Count == 1)
+                    //{
+                    //    int xDistance = move.Item2[0].xIndex - move.Item1.Position.xIndex;
+                    //    int yDistance = move.Item2[0].yIndex - move.Item1.Position.yIndex;
+                    //    if (Math.Abs(xDistance) > 1 && Math.Abs(yDistance) > 1)
+                    //    {
+                    //        //Ruch jest biciem
+                    //        throw new NotImplementedException();
+
+                    //    }
+                    //    gameState.board.MovePawn((BrownSquare)move.Item1.Position, move.Item2[0]);
+                    //}
+                    //else
+                    //{
+                    //    // Wielokrotny ruch
+                    //    gameState.board.MovePawn((BrownSquare)move.Item1.Position, move.Item2.Last());
+                    //    throw new NotImplementedException();
+                    //}
                     
 
                 }

@@ -4,13 +4,13 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>/Users/wojciechmojsiejuk/Projects/drive-download-20191101T090940Z-001/CheckersGUI/Content/BlackDame.png</File>
-    <File>/Users/wojciechmojsiejuk/Projects/drive-download-20191101T090940Z-001/CheckersGUI/Content/BlackMan.png</File>
-    <File>/Users/wojciechmojsiejuk/Projects/drive-download-20191101T090940Z-001/CheckersGUI/Content/BrownSquare.png</File>
-    <File>/Users/wojciechmojsiejuk/Projects/drive-download-20191101T090940Z-001/CheckersGUI/Content/Font.spritefont</File>
-    <File>/Users/wojciechmojsiejuk/Projects/drive-download-20191101T090940Z-001/CheckersGUI/Content/WhiteDame.png</File>
-    <File>/Users/wojciechmojsiejuk/Projects/drive-download-20191101T090940Z-001/CheckersGUI/Content/WhiteMan.png</File>
-    <File>/Users/wojciechmojsiejuk/Projects/drive-download-20191101T090940Z-001/CheckersGUI/Content/WhiteSquare.png</File>
+    <File>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/BlackDame.png</File>
+    <File>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/BlackMan.png</File>
+    <File>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/BrownSquare.png</File>
+    <File>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/Font.spritefont</File>
+    <File>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/WhiteDame.png</File>
+    <File>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/WhiteMan.png</File>
+    <File>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/WhiteSquare.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

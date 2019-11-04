@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>/Users/wojciechmojsiejuk/Projects/drive-download-20191101T090940Z-001/CheckersGUI/Content/BlackDame.png</SourceFile>
-  <SourceTime>2019-10-31T13:56:50+01:00</SourceTime>
-  <DestFile>/Users/wojciechmojsiejuk/Projects/drive-download-20191101T090940Z-001/CheckersGUI/Content/bin/DesktopGL/Content/BlackDame.xnb</DestFile>
-  <DestTime>2019-11-01T11:07:35.0880154+01:00</DestTime>
+  <SourceFile>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/BlackDame.png</SourceFile>
+  <SourceTime>2019-11-04T12:35:26.6924638+01:00</SourceTime>
+  <DestFile>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/bin/DesktopGL/Content/BlackDame.xnb</DestFile>
+  <DestTime>2019-11-04T13:03:13.7765841+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T17:35:14+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
