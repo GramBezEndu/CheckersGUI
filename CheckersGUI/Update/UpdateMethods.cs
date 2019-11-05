@@ -13,78 +13,59 @@ namespace CheckersGUI.Update
 {
     public static class UpdateMethods
     {
-        public static void Update(this GameState gameState, Vector2 statePosition, GameTime gameTime)
+        public static void Update(this PlayerVsPlayer playerVsPlayer, Vector2 statePosition, GameTime gameTime)
         {
-            gameState.board.Update(new Vector2(statePosition.X + DrawMethods.boardPlacement.X, statePosition.Y + DrawMethods.boardPlacement.Y), gameTime);
-            //Reset is now set to "R" button
-            if (gameState is PlayerVsComputer && !gameState.board.IsWhiteTurn)
-            {
-                System.Threading.Thread.Sleep(500);
-                //Ruch komputera
-                RandomComputerAgent agent = new RandomComputerAgent(gameState.board);
-                // Wyszukanie najlepszego rozwiązania
-                (Pawn, List<BrownSquare>) move = agent.SearchForBestMove();
-                gameState.board.SetSelectedSquareAsStart((BrownSquare)move.Item1.Position);
-                gameState.board.selectedSquaresToEnd = move.Item2;
+            playerVsPlayer.board.Update(new Vector2(statePosition.X + DrawMethods.boardPlacement.X, statePosition.Y + DrawMethods.boardPlacement.Y), gameTime);
+            playerVsPlayer.AcceptResetMove();
+        }
 
-                gameState.board.AcceptMove();
+        public static void AcceptResetMove(this GameState gameState)
+        {
+            if (Game1.inputManager.CurrentKeyboardState.IsKeyDown(Keys.R) && Game1.inputManager.PreviousKeyboardState.IsKeyUp(Keys.R))
+                gameState.board.ResetMove();
+            //Accept move is now set to "A" button
+            else if (Game1.inputManager.CurrentKeyboardState.IsKeyDown(Keys.A) && Game1.inputManager.PreviousKeyboardState.IsKeyUp(Keys.A))
+            {
+                // TODO: Uzupełnić metodę
+                bool moveAccepted = gameState.board.AcceptMove();
+                if (!moveAccepted)
+                {
+                    // TODO: wypisać komunikat użytkownikowi
+                    throw new NotImplementedException();
+                }
+            }
+        }
+
+        public static void Update(this PlayerVsComputer playerVsComp, Vector2 statePosition, GameTime gameTime)
+        {
+            if(playerVsComp.board.IsWhiteTurn)
+            {
+                playerVsComp.board.Update(new Vector2(statePosition.X + DrawMethods.boardPlacement.X, statePosition.Y + DrawMethods.boardPlacement.Y), gameTime);
+                playerVsComp.AcceptResetMove();
             }
             else
             {
-                if (Game1.inputManager.CurrentKeyboardState.IsKeyDown(Keys.R) && Game1.inputManager.PreviousKeyboardState.IsKeyUp(Keys.R))
-                    gameState.board.ResetMove();
-                //Accept move is now set to "A" button
-                if (Game1.inputManager.CurrentKeyboardState.IsKeyDown(Keys.A) && Game1.inputManager.PreviousKeyboardState.IsKeyUp(Keys.A))
-                {
-                    // TODO: Uzupełnić metodę
-                    bool moveAccepted = gameState.board.AcceptMove();
-                    if (!moveAccepted)
-                    {
-                        // TODO: wypisać komunikat użytkownikowi
-                        throw new NotImplementedException();
-                    }
-                    //// TODO: Wyodrębnić to jako metodę update na state PlayerVsComputer może?
-                    //else if (moveAccepted && gameState is PlayerVsComputer && !gameState.board.IsWhiteTurn)
-                    //{
-                    //    System.Threading.Thread.Sleep(500);
-                    //    //Ruch komputera
-                    //    RandomComputerAgent agent = new RandomComputerAgent(gameState.board);
-                    //    // Wyszukanie najlepszego rozwiązania
-                    //    (Pawn, List<BrownSquare>) move = agent.SearchForBestMove();
-                    //    gameState.board.SetSelectedSquareAsStart((BrownSquare)move.Item1.Position);
-                    //    gameState.board.selectedSquaresToEnd = move.Item2;
+                System.Threading.Thread.Sleep(500);
+                //Ruch komputera
+                RandomComputerAgent agent = new RandomComputerAgent(playerVsComp.board);
+                // Wyszukanie najlepszego rozwiązania
+                (Pawn, List<BrownSquare>) move = agent.SearchForBestMove();
+                playerVsComp.board.SetSelectedSquareAsStart((BrownSquare)move.Item1.Position);
+                playerVsComp.board.selectedSquaresToEnd = move.Item2;
 
-                    //    gameState.board.AcceptMove();
-                    //    //if(move.Item2.Count == 1)
-                    //    //{
-                    //    //    int xDistance = move.Item2[0].xIndex - move.Item1.Position.xIndex;
-                    //    //    int yDistance = move.Item2[0].yIndex - move.Item1.Position.yIndex;
-                    //    //    if (Math.Abs(xDistance) > 1 && Math.Abs(yDistance) > 1)
-                    //    //    {
-                    //    //        //Ruch jest biciem
-                    //    //        throw new NotImplementedException();
-
-                    //    //    }
-                    //    //    gameState.board.MovePawn((BrownSquare)move.Item1.Position, move.Item2[0]);
-                    //    //}
-                    //    //else
-                    //    //{
-                    //    //    // Wielokrotny ruch
-                    //    //    gameState.board.MovePawn((BrownSquare)move.Item1.Position, move.Item2.Last());
-                    //    //    throw new NotImplementedException();
-                    //    //}
-                    //}
-
-                }
+                playerVsComp.board.AcceptMove();
             }
-               
         }
 
         public static void Update(this State state, Vector2 statePosition, GameTime gameTime)
         {
-            if(state is GameState)
+            if(state is PlayerVsPlayer)
             {
-                (state as GameState).Update(statePosition, gameTime);
+                (state as PlayerVsPlayer).Update(statePosition, gameTime);
+            }
+            else if (state is PlayerVsComputer)
+            {
+                (state as PlayerVsComputer).Update(statePosition, gameTime);
             }
             else if(state is MenuState)
             {
