@@ -84,7 +84,7 @@ namespace CheckersGUI.Update
 
                     //bool isHovering = false;
 
-                    if(mouseRectangle.Intersects(new Rectangle((int)(boardPosition.X + i * 32), (int)(boardPosition.Y + j * 32), 32, 32)))
+                    if(mouseRectangle.Intersects(new Rectangle((int)(boardPosition.X + i * 64), (int)(boardPosition.Y + j * 64), 64, 64)))
                     {
                         if(Game1.inputManager.CurrentMouseState.LeftButton == ButtonState.Pressed && Game1.inputManager.PreviousMouseState.LeftButton == ButtonState.Released)
                         {

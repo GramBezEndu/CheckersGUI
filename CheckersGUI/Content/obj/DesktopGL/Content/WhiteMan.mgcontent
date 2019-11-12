@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/WhiteMan.png</SourceFile>
-  <SourceTime>2019-11-04T12:35:26.6980557+01:00</SourceTime>
+  <SourceTime>2019-11-12T18:08:33.5107767+01:00</SourceTime>
   <DestFile>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/bin/DesktopGL/Content/WhiteMan.xnb</DestFile>
-  <DestTime>2019-11-04T13:03:14.0013919+01:00</DestTime>
+  <DestTime>2019-11-12T18:47:16.0605407+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T17:35:14+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

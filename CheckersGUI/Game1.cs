@@ -46,6 +46,9 @@ namespace CheckersGUI
             // TODO: Add your initialization logic here
             this.IsMouseVisible = true;
             base.Initialize();
+            graphics.PreferredBackBufferWidth = 960;
+            graphics.PreferredBackBufferHeight = 720;
+            graphics.ApplyChanges();
         }
 
         /// <summary>
@@ -108,7 +111,7 @@ namespace CheckersGUI
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.OldLace);
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();

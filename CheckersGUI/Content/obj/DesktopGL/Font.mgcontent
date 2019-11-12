@@ -2,12 +2,12 @@
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/Font.spritefont</SourceFile>
   <SourceTime>2019-11-04T12:35:26.6954336+01:00</SourceTime>
-  <DestFile>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/bin/DesktopGL/Content/Font.xnb</DestFile>
-  <DestTime>2019-11-12T13:58:42.3151544+01:00</DestTime>
+  <DestFile>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/bin/DesktopGL/Font.xnb</DestFile>
+  <DestTime>2019-11-12T18:16:08.0949494+01:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
-  <ImporterTime>2019-10-15T21:32:54+02:00</ImporterTime>
+  <ImporterTime>2018-12-08T17:35:14+01:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
-  <ProcessorTime>2019-10-15T21:32:54+02:00</ProcessorTime>
+  <ProcessorTime>2018-12-08T17:35:14+01:00</ProcessorTime>
   <Parameters>
     <Key>PremultiplyAlpha</Key>
     <Value>True</Value>

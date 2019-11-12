@@ -15,7 +15,7 @@ namespace CheckersGUI.Draw
         /// <summary>
         /// Board placement related to start of the scene
         /// </summary>
-        public static readonly Vector2 boardPlacement = new Vector2(300, 50);
+        public static readonly Vector2 boardPlacement = new Vector2(416, 104);
         /// <summary>
         /// Draw method for pawns and squares
         /// </summary>
@@ -27,7 +27,7 @@ namespace CheckersGUI.Draw
             if (c is Pawn)
                 (c as Pawn).Draw(pos, spriteBatch, color);
             else
-                spriteBatch.Draw(Game1.Textures[c.GetType().Name], pos, null, null, null, 0f, new Vector2(1f, 1f), color, SpriteEffects.None, 0f);
+                spriteBatch.Draw(Game1.Textures[c.GetType().Name], pos, null, null, null, 0f, new Vector2(0.25f, 0.25f), color, SpriteEffects.None, 0f);
         }
 
         public static void Draw(this Pawn c, Vector2 pos, SpriteBatch spriteBatch, Color color)
@@ -35,16 +35,16 @@ namespace CheckersGUI.Draw
             if(c is ManPawn)
             {
                 if(c.IsWhite)
-                    spriteBatch.Draw(Game1.Textures["WhiteMan"], pos, null, null, null, 0f, new Vector2(1f, 1f), color, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(Game1.Textures["WhiteMan"], pos, null, null, null, 0f, new Vector2(0.25f, 0.25f), color, SpriteEffects.None, 0f);
                 else
-                    spriteBatch.Draw(Game1.Textures["BlackMan"], pos, null, null, null, 0f, new Vector2(1f, 1f), color, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(Game1.Textures["BlackMan"], pos, null, null, null, 0f, new Vector2(0.25f, 0.25f), color, SpriteEffects.None, 0f);
             }
             else if(c is Dame)
             {
                 if (c.IsWhite)
-                    spriteBatch.Draw(Game1.Textures["WhiteDame"], pos, null, null, null, 0f, new Vector2(1f, 1f), color, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(Game1.Textures["WhiteDame"], pos, null, null, null, 0f, new Vector2(0.25f, 0.25f), color, SpriteEffects.None, 0f);
                 else
-                    spriteBatch.Draw(Game1.Textures["BlackDame"], pos, null, null, null, 0f, new Vector2(1f, 1f), color, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(Game1.Textures["BlackDame"], pos, null, null, null, 0f, new Vector2(0.25f, 0.25f), color, SpriteEffects.None, 0f);
             }
         }
 
@@ -86,23 +86,23 @@ namespace CheckersGUI.Draw
                 {
                     //Draw starting square
                     if (board.squares[i][j] == board.GetSelectedSquareAsStart())
-                        (board.squares[i][j] as DrawableComponent).Draw(new Vector2(pos.X + i * 32, pos.Y + j * 32), spriteBatch, Color.Green);
+                        (board.squares[i][j] as DrawableComponent).Draw(new Vector2(pos.X + i * 64, pos.Y + j * 64), spriteBatch, Color.Green * 0.9f);
                     //Draw squares selected by user to the end path
                     else if (board.selectedSquaresToEnd.Contains(board.squares[i][j]))
-                        (board.squares[i][j] as DrawableComponent).Draw(new Vector2(pos.X + i * 32, pos.Y + j * 32), spriteBatch, Color.Red);
+                        (board.squares[i][j] as DrawableComponent).Draw(new Vector2(pos.X + i * 64, pos.Y + j * 64), spriteBatch, Color.Red);
                     //Draw rest of the squares
                     else
-                        (board.squares[i][j] as DrawableComponent).Draw(new Vector2(pos.X + i * 32, pos.Y + j * 32), spriteBatch, Color.White);
+                        (board.squares[i][j] as DrawableComponent).Draw(new Vector2(pos.X + i * 64, pos.Y + j * 64), spriteBatch, Color.White);
                     if(board.squares[i][j] is BrownSquare)
                     {
                         var pawn = (board.squares[i][j] as BrownSquare).Pawn;
                         if (pawn != null)
-                            (pawn as DrawableComponent).Draw(new Vector2(pos.X + i * 32, pos.Y + j * 32), spriteBatch, Color.White);
+                            (pawn as DrawableComponent).Draw(new Vector2(pos.X + i * 64, pos.Y + j * 64), spriteBatch, Color.White);
                     }
                 }
             }
             //Draw text: who turn it is
-            spriteBatch.DrawString(Game1.Font, board.TurnMessage, new Vector2(pos.X - 32, pos.Y -32), Color.Black);
+            spriteBatch.DrawString(Game1.Font, board.TurnMessage, new Vector2(pos.X + 70, pos.Y -32), Color.Black);
         }
     }
 }
