@@ -15,35 +15,20 @@ namespace CheckersGUI.Update
     {
         public static void Update(this PlayerVsPlayer playerVsPlayer, Vector2 statePosition, GameTime gameTime)
         {
+            DrawMethods.acceptMove.Update(gameTime);
+            DrawMethods.resetMove.Update(gameTime);
             DrawMethods.backButton.Update(gameTime);
             playerVsPlayer.board.Update(new Vector2(statePosition.X + DrawMethods.boardPlacement.X, statePosition.Y + DrawMethods.boardPlacement.Y), gameTime);
-            playerVsPlayer.AcceptResetMove();
-        }
-
-        public static void AcceptResetMove(this GameState gameState)
-        {
-            if (Game1.inputManager.CurrentKeyboardState.IsKeyDown(Keys.R) && Game1.inputManager.PreviousKeyboardState.IsKeyUp(Keys.R))
-                gameState.board.ResetMove();
-            //Accept move is now set to "A" button
-            else if (Game1.inputManager.CurrentKeyboardState.IsKeyDown(Keys.A) && Game1.inputManager.PreviousKeyboardState.IsKeyUp(Keys.A))
-            {
-                // TODO: Uzupełnić metodę
-                bool moveAccepted = gameState.board.AcceptMove();
-                if (!moveAccepted)
-                {
-                    // TODO: wypisać komunikat użytkownikowi
-                    throw new NotImplementedException();
-                }
-            }
         }
 
         public static void Update(this PlayerVsComputer playerVsComp, Vector2 statePosition, GameTime gameTime)
         {
+            DrawMethods.acceptMove.Update(gameTime);
+            DrawMethods.resetMove.Update(gameTime);
             DrawMethods.backButton.Update(gameTime);
-            if(playerVsComp.board.IsWhiteTurn)
+            if (playerVsComp.board.IsWhiteTurn)
             {
                 playerVsComp.board.Update(new Vector2(statePosition.X + DrawMethods.boardPlacement.X, statePosition.Y + DrawMethods.boardPlacement.Y), gameTime);
-                playerVsComp.AcceptResetMove();
             }
             else
             {

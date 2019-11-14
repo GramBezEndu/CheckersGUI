@@ -71,9 +71,21 @@ namespace CheckersGUI.Draw
 
         public static void Init(this GameState gameState)
         {
+            acceptMove = new TextButton(Game1.inputManager, Game1.Font, "Accept move")
+            {
+                Position = new Vector2(20, 300),
+                Color = Color.White,
+                OnClick = (o, e) => gameState.board.AcceptMove()
+            };
+            resetMove = new TextButton(Game1.inputManager, Game1.Font, "Reset move")
+            {
+                Position = new Vector2(acceptMove.Position.X, acceptMove.Position.Y + acceptMove.Size.Y),
+                Color = Color.White,
+                OnClick = (o, e) => gameState.board.ResetMove()
+        };
             backButton = new TextButton(Game1.inputManager, Game1.Font, "Back")
             {
-                Position = new Vector2(20, 500),
+                Position = new Vector2(20, 600),
                 Color = Color.White,
                 OnClick = (o, e) => Game1.GameReference.ChangeState(new MenuState())
             };
@@ -82,6 +94,8 @@ namespace CheckersGUI.Draw
         public static IButton playVsPlayer;
         public static IButton playVsComputer;
         public static IButton backButton;
+        public static IButton acceptMove;
+        public static IButton resetMove;
         public static void Init(this MenuState menu)
         {
             playVsPlayer = new TextButton(Game1.inputManager, Game1.Font, "Play Vs Player")
@@ -110,11 +124,9 @@ namespace CheckersGUI.Draw
             spriteBatch.Draw(Game1.Textures["DarkWood"], new Vector2(0, 0), null, Color.OrangeRed, 0f, new Vector2(0, 0), new Vector2(1f, 1f), SpriteEffects.None, 0f);
             //Draw text: what gamemode it is
             spriteBatch.DrawString(Game1.Font, gameState.GetType().Name, new Vector2(statePosition.X, statePosition.Y), Color.White);
-            //Draw text: how to reset move (now only keyboard button)
-            spriteBatch.DrawString(Game1.Font, "Reset move [R]", new Vector2(statePosition.X, statePosition.Y + 40), Color.White);
-            //Draw text: how to accept move (now only keyboard button)
-            spriteBatch.DrawString(Game1.Font, "Accept move [A]", new Vector2(statePosition.X, statePosition.Y + 80), Color.White);
             gameState.board.Draw(new Vector2(statePosition.X + boardPlacement.X, statePosition.Y + boardPlacement.Y), spriteBatch);
+            acceptMove.Draw(spriteBatch);
+            resetMove.Draw(spriteBatch);
             backButton.Draw(spriteBatch);
         }
 
