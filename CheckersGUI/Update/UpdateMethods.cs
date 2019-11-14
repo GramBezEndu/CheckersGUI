@@ -15,6 +15,7 @@ namespace CheckersGUI.Update
     {
         public static void Update(this PlayerVsPlayer playerVsPlayer, Vector2 statePosition, GameTime gameTime)
         {
+            DrawMethods.backButton.Update(gameTime);
             playerVsPlayer.board.Update(new Vector2(statePosition.X + DrawMethods.boardPlacement.X, statePosition.Y + DrawMethods.boardPlacement.Y), gameTime);
             playerVsPlayer.AcceptResetMove();
         }
@@ -38,6 +39,7 @@ namespace CheckersGUI.Update
 
         public static void Update(this PlayerVsComputer playerVsComp, Vector2 statePosition, GameTime gameTime)
         {
+            DrawMethods.backButton.Update(gameTime);
             if(playerVsComp.board.IsWhiteTurn)
             {
                 playerVsComp.board.Update(new Vector2(statePosition.X + DrawMethods.boardPlacement.X, statePosition.Y + DrawMethods.boardPlacement.Y), gameTime);
