@@ -81,3 +81,4 @@ C:\Users\Jakub\Desktop\CheckersGUI\CheckersGUI\obj\Debug\CheckersGUI.csprojAssem
 C:\Users\Jakub\Desktop\CheckersGUI\CheckersGUI\obj\Debug\CheckersGUI.csproj.CopyComplete
 C:\Users\Jakub\Desktop\CheckersGUI\CheckersGUI\obj\Debug\CheckersGUI.exe
 C:\Users\Jakub\Desktop\CheckersGUI\CheckersGUI\obj\Debug\CheckersGUI.pdb
+C:\Users\Jakub\Desktop\CheckersGUI\CheckersGUI\bin\DesktopGL\AnyCPU\Debug\Content\DarkWood.xnb

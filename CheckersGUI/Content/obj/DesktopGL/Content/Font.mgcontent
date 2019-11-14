@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/Jakub/Desktop/CheckersGUI/CheckersGUI/Content/Font.spritefont</SourceFile>
-  <SourceTime>2019-11-05T12:07:45.5884741+01:00</SourceTime>
+  <SourceTime>2019-11-14T19:42:46.05107+01:00</SourceTime>
   <DestFile>C:/Users/Jakub/Desktop/CheckersGUI/CheckersGUI/Content/bin/DesktopGL/Content/Font.xnb</DestFile>
-  <DestTime>2019-11-12T19:52:47.4183187+01:00</DestTime>
+  <DestTime>2019-11-14T19:43:03.1594535+01:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2019-10-15T21:28:30+02:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

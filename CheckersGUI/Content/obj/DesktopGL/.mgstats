@@ -1,8 +1,2 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/BlackDame.png","/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/bin/DesktopGL/BlackDame.xnb","TextureProcessor","Texture2DContent",417,4181,0,183436
-"/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/BlackMan.png","/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/bin/DesktopGL/BlackMan.xnb","TextureProcessor","Texture2DContent",33955,262229,0,021277
-"/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/BrownSquare.png","/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/bin/DesktopGL/BrownSquare.xnb","TextureProcessor","Texture2DContent",172,4181,0,003576
-"/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/Font.spritefont","/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/bin/DesktopGL/Font.xnb","FontDescriptionProcessor","SpriteFontContent",2025,21521,0,21439
-"/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/WhiteDame.png","/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/bin/DesktopGL/WhiteDame.xnb","TextureProcessor","Texture2DContent",588,4181,0,003491
-"/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/WhiteMan.png","/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/bin/DesktopGL/WhiteMan.xnb","TextureProcessor","Texture2DContent",408,4181,0,003454
-"/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/WhiteSquare.png","/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/bin/DesktopGL/WhiteSquare.xnb","TextureProcessor","Texture2DContent",225,4181,0,004057
+"C:/Users/Jakub/Desktop/CheckersGUI/CheckersGUI/Content/DarkWood.png","C:/Users/Jakub/Desktop/CheckersGUI/CheckersGUI/Content/bin/DesktopGL/DarkWood.xnb","TextureProcessor","Texture2DContent",196115,4194389,0,3108423

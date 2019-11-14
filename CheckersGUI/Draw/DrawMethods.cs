@@ -74,20 +74,21 @@ namespace CheckersGUI.Draw
         {
             playVsPlayer = new TextButton(Game1.inputManager, Game1.Font, "Play Vs Player")
             {
-                Position = new Vector2(300, 300),
-                Scale = new Vector2(3f, 3f),
+                Position = new Vector2(20, 300),
+                Color = Color.White,
                 OnClick = (o, e) => Game1.GameReference.ChangeState(new PlayerVsPlayer())
             };
             playVsComputer = new TextButton(Game1.inputManager, Game1.Font, "Play Vs Computer")
             {
-                Position = new Vector2(300, 300 + playVsPlayer.Size.Y),
-                Scale = new Vector2(3f, 3f),
+                Position = new Vector2(playVsPlayer.Position.X, 300 + playVsPlayer.Size.Y),
+                Color = Color.White,
                 OnClick = (o, e) => Game1.GameReference.ChangeState(new PlayerVsComputer())
             };
         }
 
         public static void Draw(this MenuState menuState, Vector2 statePosition, SpriteBatch spriteBatch)
         {
+            spriteBatch.Draw(Game1.Textures["DarkWood"], new Vector2(0, 0), null, Color.OrangeRed, 0f, new Vector2(0, 0), new Vector2(1f, 1f), SpriteEffects.None, 0f);
             playVsPlayer.Draw(spriteBatch);
             playVsComputer.Draw(spriteBatch);
         }
