@@ -68,6 +68,13 @@
 /processorParam:TextureFormat=Compressed
 /build:Font.spritefont
 
+#begin FontBig.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:FontBig.spritefont
+
 #begin WhiteDame.png
 /importer:TextureImporter
 /processor:TextureProcessor

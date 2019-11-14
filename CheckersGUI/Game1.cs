@@ -29,6 +29,7 @@ namespace CheckersGUI
         /// </summary>
         public static Dictionary<string, Texture2D> Textures = new Dictionary<string, Texture2D>();
         public static SpriteFont Font;
+        public static SpriteFont LargeFont;
 
         public Game1()
         {
@@ -70,6 +71,7 @@ namespace CheckersGUI
             // TODO: use this.Content to load your game content here
             LoadTextures();
             Font = Content.Load<SpriteFont>("Font");
+            LargeFont = Content.Load<SpriteFont>("FontBig");
             currentState = new MenuState();
             currentState.Init();
         }
@@ -83,7 +85,7 @@ namespace CheckersGUI
             foreach (FileInfo file in files)
             {
                 string key = Path.GetFileNameWithoutExtension(file.Name);
-                if (key == "Font")
+                if (key == "Font" || key == "FontBig")
                     continue;
                 Textures[key] = Content.Load<Texture2D>(Directory.GetCurrentDirectory() + "/Content/" + key);
             }

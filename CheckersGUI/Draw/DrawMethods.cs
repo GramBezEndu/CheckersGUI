@@ -98,13 +98,13 @@ namespace CheckersGUI.Draw
         public static IButton resetMove;
         public static void Init(this MenuState menu)
         {
-            playVsPlayer = new TextButton(Game1.inputManager, Game1.Font, "Play Vs Player")
+            playVsPlayer = new TextButton(Game1.inputManager, Game1.Font, "Player vs Player")
             {
                 Position = new Vector2(20, 300),
                 Color = Color.White,
                 OnClick = (o, e) => Game1.GameReference.ChangeState(new PlayerVsPlayer())
             };
-            playVsComputer = new TextButton(Game1.inputManager, Game1.Font, "Play Vs Computer")
+            playVsComputer = new TextButton(Game1.inputManager, Game1.Font, "Player vs Computer")
             {
                 Position = new Vector2(playVsPlayer.Position.X, 300 + playVsPlayer.Size.Y),
                 Color = Color.White,
@@ -115,6 +115,7 @@ namespace CheckersGUI.Draw
         public static void Draw(this MenuState menuState, Vector2 statePosition, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Game1.Textures["DarkWood"], new Vector2(0, 0), null, Color.OrangeRed, 0f, new Vector2(0, 0), new Vector2(1f, 1f), SpriteEffects.None, 0f);
+            spriteBatch.DrawString(Game1.LargeFont, "CHECKERS", new Vector2(960/2 - Game1.LargeFont.MeasureString("CHECKERS").X/2, 50), Color.White);
             playVsPlayer.Draw(spriteBatch);
             playVsComputer.Draw(spriteBatch);
         }
