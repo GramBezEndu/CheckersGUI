@@ -12,6 +12,13 @@ namespace CheckersGUI.Controls.Buttons
     {
         protected InputManager inputManager;
         protected bool selected;
+        protected Rectangle Rectangle
+        {
+            get
+            {
+                return new Rectangle((int)Position.X, (int)Position.Y, (int)Size.X, (int)Size.Y);
+            }
+        }
 
         public TextButton(InputManager im, SpriteFont f, string msg, Vector2 scale) : base(f, msg, scale)
         {
@@ -23,7 +30,7 @@ namespace CheckersGUI.Controls.Buttons
             inputManager = im;
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             if (!Hidden)
             {
@@ -39,31 +46,26 @@ namespace CheckersGUI.Controls.Buttons
         {
             if (!Hidden)
             {
+                var mouseRectangle = new Rectangle(inputManager.CurrentMouseState.X, 
+                    inputManager.CurrentMouseState.Y, 1, 1);
+
+                Selected = false;
+
+                if (mouseRectangle.Intersects(Rectangle))
+                    Selected = true;
+
                 if (Selected)
                 {
-                    //if (inputManager.ActionWasJustPressed("Accept"))
-                    //{
-                    //    OnClick?.Invoke(this, new EventArgs());
-                    //}
+                    if (inputManager.CurrentMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed && inputManager.PreviousMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Released)
+                    {
+                        OnClick?.Invoke(this, new EventArgs());
+                    }
                 }
             }
         }
 
         public EventHandler OnClick { get; set; }
-        public bool Selected 
-        { 
-            get => selected;
-            set
-            {
-                if (selected == value)
-                    return;
-                else
-                {
-                    selected = value;
-                    OnSelectedChange?.Invoke(this, new EventArgs());
-                }
-            }
-        }
+        public bool Selected { get; set; }
         public EventHandler OnSelectedChange { get; set; }
     }
 }

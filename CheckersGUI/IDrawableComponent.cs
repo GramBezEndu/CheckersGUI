@@ -14,6 +14,6 @@ namespace CheckersGUI
         Vector2 Position { get; set; }
         Vector2 Size { get; }
         Color Color { get; set; }
-        void Draw(GameTime gameTime, SpriteBatch spriteBatch);
+        void Draw(SpriteBatch spriteBatch);
     }
 }

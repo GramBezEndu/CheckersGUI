@@ -1,4 +1,5 @@
-﻿using CheckersLogic;
+﻿using CheckersGUI.Controls.Buttons;
+using CheckersLogic;
 using CheckersLogic.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -56,8 +57,39 @@ namespace CheckersGUI.Draw
             }
             else if(state is MenuState)
             {
-                //
+                (state as MenuState).Draw(statePosition, spriteBatch);
             }
+        }
+
+        public static void Init(this State state)
+        {
+            if (state is MenuState menuState)
+                menuState.Init();
+        }
+
+        public static IButton playVsPlayer;
+        public static IButton playVsComputer;
+
+        public static void Init(this MenuState menu)
+        {
+            playVsPlayer = new TextButton(Game1.inputManager, Game1.Font, "Play Vs Player")
+            {
+                Position = new Vector2(300, 300),
+                Scale = new Vector2(3f, 3f),
+                OnClick = (o, e) => Game1.GameReference.ChangeState(new PlayerVsPlayer())
+            };
+            playVsComputer = new TextButton(Game1.inputManager, Game1.Font, "Play Vs Computer")
+            {
+                Position = new Vector2(300, 300 + playVsPlayer.Size.Y),
+                Scale = new Vector2(3f, 3f),
+                OnClick = (o, e) => Game1.GameReference.ChangeState(new PlayerVsComputer())
+            };
+        }
+
+        public static void Draw(this MenuState menuState, Vector2 statePosition, SpriteBatch spriteBatch)
+        {
+            playVsPlayer.Draw(spriteBatch);
+            playVsComputer.Draw(spriteBatch);
         }
 
         public static void Draw(this GameState gameState, Vector2 statePosition, SpriteBatch spriteBatch)

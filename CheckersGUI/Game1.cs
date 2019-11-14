@@ -18,7 +18,9 @@ namespace CheckersGUI
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         public static InputManager inputManager = new InputManager();
+        State nextState;
         State currentState;
+        public static Game1 GameReference;
         Vector2 statePosition = new Vector2(0, 0);
         //Board Board;
         //Vector2 boardPosition = new Vector2(50, 50);
@@ -32,7 +34,12 @@ namespace CheckersGUI
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            currentState = new PlayerVsComputer();
+            GameReference = this;
+        }
+
+        public void ChangeState(State s)
+        {
+            nextState = s;
         }
 
         /// <summary>
@@ -63,6 +70,8 @@ namespace CheckersGUI
             // TODO: use this.Content to load your game content here
             LoadTextures();
             Font = Content.Load<SpriteFont>("Font");
+            currentState = new MenuState();
+            currentState.Init();
         }
 
         private void LoadTextures()
@@ -98,6 +107,13 @@ namespace CheckersGUI
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            if(nextState != null)
+            {
+                currentState = nextState;
+                currentState.Init();
+                nextState = null;
+            }
 
             // TODO: Add your update logic here
             inputManager.Update(gameTime);
