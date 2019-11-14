@@ -27,7 +27,7 @@ namespace CheckersGUI.Draw
             if (c is Pawn)
                 (c as Pawn).Draw(pos, spriteBatch, color);
             else
-                spriteBatch.Draw(Game1.Textures[c.GetType().Name], pos, null, null, null, 0f, new Vector2(0.25f, 0.25f), color, SpriteEffects.None, 0f);
+                spriteBatch.Draw(Game1.Textures[c.GetType().Name], pos, null, color, 0f, new Vector2(0, 0), new Vector2(0.25f, 0.25f), SpriteEffects.None, 0f);
         }
 
         public static void Draw(this Pawn c, Vector2 pos, SpriteBatch spriteBatch, Color color)
@@ -35,16 +35,16 @@ namespace CheckersGUI.Draw
             if(c is ManPawn)
             {
                 if(c.IsWhite)
-                    spriteBatch.Draw(Game1.Textures["WhiteMan"], pos, null, null, null, 0f, new Vector2(0.25f, 0.25f), color, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(Game1.Textures["WhiteMan"], pos, null, color, 0f, new Vector2(0, 0), new Vector2(0.25f, 0.25f), SpriteEffects.None, 0f);
                 else
-                    spriteBatch.Draw(Game1.Textures["BlackMan"], pos, null, null, null, 0f, new Vector2(0.25f, 0.25f), color, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(Game1.Textures["BlackMan"], pos, null, color, 0f, new Vector2(0, 0), new Vector2(0.25f, 0.25f), SpriteEffects.None, 0f);
             }
             else if(c is Dame)
             {
                 if (c.IsWhite)
-                    spriteBatch.Draw(Game1.Textures["WhiteDame"], pos, null, null, null, 0f, new Vector2(0.25f, 0.25f), color, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(Game1.Textures["WhiteDame"], pos, null, color, 0f, new Vector2(0, 0), new Vector2(0.25f, 0.25f), SpriteEffects.None, 0f);
                 else
-                    spriteBatch.Draw(Game1.Textures["BlackDame"], pos, null, null, null, 0f, new Vector2(0.25f, 0.25f), color, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(Game1.Textures["BlackDame"], pos, null, color, 0f, new Vector2(0, 0), new Vector2(0.25f, 0.25f), SpriteEffects.None, 0f);
             }
         }
 

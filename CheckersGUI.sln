@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckersGUI", "CheckersGUI\CheckersGUI.csproj", "{8B20781C-745D-4580-B259-8A1E26500216}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CheckersLogic", "..\CheckersTerminal\CheckersLogic\CheckersLogic.shproj", "{8FDD4A84-8050-4230-955A-9D0177776B7F}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\CheckersTerminal\CheckersLogic\CheckersLogic.projitems*{8b20781c-745d-4580-b259-8a1e26500216}*SharedItemsImports = 4
+		..\CheckersTerminal\CheckersLogic\CheckersLogic.projitems*{8fdd4a84-8050-4230-955a-9d0177776b7f}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B20781C-745D-4580-B259-8A1E26500216}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B20781C-745D-4580-B259-8A1E26500216}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B20781C-745D-4580-B259-8A1E26500216}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B20781C-745D-4580-B259-8A1E26500216}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {941DDCD6-1429-437C-830E-C2F066DA5A76}
+	EndGlobalSection
+EndGlobal
