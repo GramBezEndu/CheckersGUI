@@ -87,6 +87,12 @@
 /processorParam:Quality=Best
 /build:Songs/PlayTheme.mp3
 
+#begin Sounds/WrongMove.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/WrongMove.wav
+
 #begin WhiteDame.png
 /importer:TextureImporter
 /processor:TextureProcessor

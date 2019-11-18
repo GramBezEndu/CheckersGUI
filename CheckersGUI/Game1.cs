@@ -8,6 +8,7 @@ using CheckersGUI.Draw;
 using CheckersGUI.Update;
 using CheckersLogic.States;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 
 namespace CheckersGUI
 {
@@ -30,6 +31,7 @@ namespace CheckersGUI
         /// </summary>
         public static Dictionary<string, Texture2D> Textures = new Dictionary<string, Texture2D>();
         public static Dictionary<string, Song> Songs = new Dictionary<string, Song>();
+        public static Dictionary<string, SoundEffect> SoundEffects = new Dictionary<string, SoundEffect>();
         public static SpriteFont Font;
         public static SpriteFont LargeFont;
         private Song currentSong;
@@ -101,6 +103,7 @@ namespace CheckersGUI
             MediaPlayer.IsRepeating = true;
             LoadTextures();
             LoadSongs();
+            LoadSoundEffects();
             Font = Content.Load<SpriteFont>("Font");
             LargeFont = Content.Load<SpriteFont>("FontBig");
             currentState = new MenuState();
@@ -117,6 +120,19 @@ namespace CheckersGUI
             {
                 string key = Path.GetFileNameWithoutExtension(file.Name);
                 Songs[key] = Content.Load<Song>(Directory.GetCurrentDirectory() + "/Content/Songs/" + key);
+            }
+        }
+
+        private void LoadSoundEffects()
+        {
+            DirectoryInfo directoryInfo = new DirectoryInfo(Content.RootDirectory + @"/Sounds");
+            if (!directoryInfo.Exists)
+                throw new DirectoryNotFoundException();
+            FileInfo[] files = directoryInfo.GetFiles("*.*");
+            foreach (FileInfo file in files)
+            {
+                string key = Path.GetFileNameWithoutExtension(file.Name);
+                SoundEffects[key] = Content.Load<SoundEffect>(Directory.GetCurrentDirectory() + "/Content/Sounds/" + key);
             }
         }
         private void LoadTextures()

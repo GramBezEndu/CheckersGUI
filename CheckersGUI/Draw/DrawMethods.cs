@@ -93,8 +93,13 @@ namespace CheckersGUI.Draw
                 OnClick = (o, e) => Game1.GameReference.ChangeState(new MenuState())
             };
             game.PlaySong(Game1.Songs["PlayTheme"]);
+            gameState.board.OnWrongMove += PlayWrongMoveSound;
         }
 
+        private static void PlayWrongMoveSound(object sender, EventArgs e)
+        {
+            Game1.SoundEffects["WrongMove"].Play();
+        }
 
         public enum AnimationState
         {
@@ -113,14 +118,14 @@ namespace CheckersGUI.Draw
             playVsPlayer = new TextButton(Game1.inputManager, Game1.Font, "Player vs Player")
             {
                 Position = new Vector2(20, 300),
-                Color = Color.White,
+                Color = new Color(230, 210, 190),
                 OnClick = (o, e) => animationState = AnimationState.PlayerVsPlayer
                 //Game1.GameReference.ChangeState(new PlayerVsPlayer())
             };
             playVsComputer = new TextButton(Game1.inputManager, Game1.Font, "Player vs Computer")
             {
                 Position = new Vector2(playVsPlayer.Position.X, 300 + playVsPlayer.Size.Y),
-                Color = Color.White,
+                Color = new Color(230, 210, 190),
                 OnClick = (o, e) => animationState = AnimationState.PlayerVsComputer
                 //Game1.GameReference.ChangeState(new PlayerVsComputer())
             };
@@ -134,7 +139,7 @@ namespace CheckersGUI.Draw
             spriteBatch.Draw(Game1.Textures["DarkWood"], new Vector2(0, 0), null, Color.OrangeRed, 0f, new Vector2(0, 0), new Vector2(1f, 1f), SpriteEffects.None, 0f);
             if (DrawMethods.animationState == DrawMethods.AnimationState.None)
             {
-                spriteBatch.DrawString(Game1.LargeFont, "CHECKERS", new Vector2(960/2 - Game1.LargeFont.MeasureString("CHECKERS").X/2, 50), Color.White);
+                spriteBatch.DrawString(Game1.LargeFont, "CHECKERS", new Vector2(960/2 - Game1.LargeFont.MeasureString("CHECKERS").X/2, 50), new Color(230, 210, 190));
                 playVsPlayer.Draw(spriteBatch);
                 playVsComputer.Draw(spriteBatch);
             }
@@ -146,7 +151,7 @@ namespace CheckersGUI.Draw
         {
             spriteBatch.Draw(Game1.Textures["DarkWood"], new Vector2(0, 0), null, Color.OrangeRed, 0f, new Vector2(0, 0), new Vector2(1f, 1f), SpriteEffects.None, 0f);
             //Draw text: what gamemode it is
-            spriteBatch.DrawString(Game1.Font, gameState.GetType().Name, new Vector2(statePosition.X, statePosition.Y), Color.White);
+            spriteBatch.DrawString(Game1.Font, gameState.GetType().Name, new Vector2(statePosition.X, statePosition.Y), new Color(230, 210, 190));
             gameState.board.Draw(new Vector2(statePosition.X + boardPlacement.X, statePosition.Y + boardPlacement.Y), spriteBatch);
             acceptMove.Draw(spriteBatch);
             resetMove.Draw(spriteBatch);
@@ -189,7 +194,7 @@ namespace CheckersGUI.Draw
             if (game)
             {
                 //Draw text: who turn it is
-                spriteBatch.DrawString(Game1.Font, board.TurnMessage, new Vector2(pos.X + 135, pos.Y -40), Color.White);
+                spriteBatch.DrawString(Game1.Font, board.TurnMessage, new Vector2(pos.X + 135, pos.Y -40), new Color(230, 210, 190));
             }
         }
 
