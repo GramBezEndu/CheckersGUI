@@ -7,6 +7,7 @@ using System.IO;
 using CheckersGUI.Draw;
 using CheckersGUI.Update;
 using CheckersLogic.States;
+using Microsoft.Xna.Framework.Media;
 
 namespace CheckersGUI
 {
@@ -28,14 +29,42 @@ namespace CheckersGUI
         /// All textures
         /// </summary>
         public static Dictionary<string, Texture2D> Textures = new Dictionary<string, Texture2D>();
+        public static Dictionary<string, Song> Songs = new Dictionary<string, Song>();
         public static SpriteFont Font;
         public static SpriteFont LargeFont;
+        private Song currentSong;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             GameReference = this;
+        }
+
+        public void PlaySong(Song s)
+        {
+            //We do not allow to change song to the same song
+            if (IsThisSongPlaying(s))
+                return;
+            //If parameter is null we stop playing music
+            if (s == null)
+            {
+                currentSong = null;
+                MediaPlayer.Stop();
+                return;
+            }
+            //Regular case: stop playing old song and start playing new song
+            currentSong = s;
+            MediaPlayer.Stop();
+            MediaPlayer.Play(s);
+        }
+
+        private bool IsThisSongPlaying(Song song)
+        {
+            if (currentSong == song)
+                return true;
+            else
+                return false;
         }
 
         public void ChangeState(State s)
@@ -69,13 +98,27 @@ namespace CheckersGUI
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            MediaPlayer.IsRepeating = true;
             LoadTextures();
+            LoadSongs();
             Font = Content.Load<SpriteFont>("Font");
             LargeFont = Content.Load<SpriteFont>("FontBig");
             currentState = new MenuState();
-            currentState.Init();
+            currentState.Init(this);
         }
 
+        private void LoadSongs()
+        {
+            DirectoryInfo directoryInfo = new DirectoryInfo(Content.RootDirectory + @"/Songs");
+            if (!directoryInfo.Exists)
+                throw new DirectoryNotFoundException();
+            FileInfo[] files = directoryInfo.GetFiles("*.*");
+            foreach (FileInfo file in files)
+            {
+                string key = Path.GetFileNameWithoutExtension(file.Name);
+                Songs[key] = Content.Load<Song>(Directory.GetCurrentDirectory() + "/Content/Songs/" + key);
+            }
+        }
         private void LoadTextures()
         {
             DirectoryInfo directoryInfo = new DirectoryInfo(Content.RootDirectory);
@@ -113,7 +156,7 @@ namespace CheckersGUI
             if(nextState != null)
             {
                 currentState = nextState;
-                currentState.Init();
+                currentState.Init(this);
                 nextState = null;
             }
 

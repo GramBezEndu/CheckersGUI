@@ -75,6 +75,18 @@
 /processorParam:TextureFormat=Compressed
 /build:FontBig.spritefont
 
+#begin Songs/MainMenu.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Songs/MainMenu.mp3
+
+#begin Songs/PlayTheme.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Songs/PlayTheme.mp3
+
 #begin WhiteDame.png
 /importer:TextureImporter
 /processor:TextureProcessor

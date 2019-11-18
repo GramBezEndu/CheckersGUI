@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/Jakub/Desktop/CheckersGUI/CheckersGUI/Content/Songs/PlayTheme.mp3</SourceFile>
+  <SourceTime>2019-11-18T01:08:58.55897+01:00</SourceTime>
+  <DestFile>C:/Users/Jakub/Desktop/CheckersGUI/CheckersGUI/Content/bin/DesktopGL/Songs/PlayTheme.xnb</DestFile>
+  <DestTime>2019-11-18T01:09:33.736083+01:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2019-10-15T21:28:30+02:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2019-10-15T21:28:30+02:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>C:/Users/Jakub/Desktop/CheckersGUI/CheckersGUI/Content/bin/DesktopGL/Songs/PlayTheme.ogg</string>
+  </BuildOutput>
+</PipelineBuildEvent>

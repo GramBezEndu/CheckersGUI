@@ -61,15 +61,15 @@ namespace CheckersGUI.Draw
             }
         }
 
-        public static void Init(this State state)
+        public static void Init(this State state, Game1 game)
         {
             if (state is MenuState menuState)
-                menuState.Init();
+                menuState.Init(game);
             else if (state is GameState gameState)
-                gameState.Init();
+                gameState.Init(game);
         }
 
-        public static void Init(this GameState gameState)
+        public static void Init(this GameState gameState, Game1 game)
         {
             acceptMove = new TextButton(Game1.inputManager, Game1.Font, "Accept move")
             {
@@ -89,6 +89,7 @@ namespace CheckersGUI.Draw
                 Color = Color.White,
                 OnClick = (o, e) => Game1.GameReference.ChangeState(new MenuState())
             };
+            game.PlaySong(Game1.Songs["PlayTheme"]);
         }
 
         public static IButton playVsPlayer;
@@ -96,7 +97,7 @@ namespace CheckersGUI.Draw
         public static IButton backButton;
         public static IButton acceptMove;
         public static IButton resetMove;
-        public static void Init(this MenuState menu)
+        public static void Init(this MenuState menu, Game1 game)
         {
             playVsPlayer = new TextButton(Game1.inputManager, Game1.Font, "Player vs Player")
             {
@@ -110,6 +111,7 @@ namespace CheckersGUI.Draw
                 Color = Color.White,
                 OnClick = (o, e) => Game1.GameReference.ChangeState(new PlayerVsComputer())
             };
+            game.PlaySong(Game1.Songs["MainMenu"]);
         }
 
         public static void Draw(this MenuState menuState, Vector2 statePosition, SpriteBatch spriteBatch)
