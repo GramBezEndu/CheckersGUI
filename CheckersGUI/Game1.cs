@@ -162,7 +162,7 @@ namespace CheckersGUI
 
             // TODO: Add your update logic here
             inputManager.Update(gameTime);
-            currentState.Update(statePosition, gameTime);
+            currentState.Update(statePosition, gameTime, this);
             base.Update(gameTime);
         }
 

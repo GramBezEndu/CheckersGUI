@@ -44,13 +44,40 @@ namespace CheckersGUI.Update
             }
         }
 
-        public static void Update(this MenuState menu, Vector2 statePosition, GameTime gameTime)
+        public static void Update(this MenuState menu, Vector2 statePosition, GameTime gameTime, Game1 game1)
         {
             DrawMethods.playVsPlayer.Update(gameTime);
             DrawMethods.playVsComputer.Update(gameTime);
+            if (DrawMethods.currentPlacement.X >= DrawMethods.boardPlacement.X && DrawMethods.animationState != DrawMethods.AnimationState.None)
+            {
+                Update(gameTime);
+            }
+            else if (DrawMethods.currentPlacement.X < DrawMethods.boardPlacement.X)
+            {
+                switch (DrawMethods.animationState)
+                {
+                    case DrawMethods.AnimationState.PlayerVsPlayer:
+                        game1.ChangeState(new PlayerVsPlayer());
+                        break;
+                    case DrawMethods.AnimationState.PlayerVsComputer:
+                        game1.ChangeState(new PlayerVsComputer());
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
-        public static void Update(this State state, Vector2 statePosition, GameTime gameTime)
+        public static void Update(GameTime gameTime)
+        {
+            float positionX = (DrawMethods.boardPlacement.X - DrawMethods.boardPlacementBeg.X) / 50;
+            float positionY = (DrawMethods.boardPlacement.Y - DrawMethods.boardPlacementBeg.Y) / 50;
+            Vector2 current = new Vector2(DrawMethods.currentPlacement.X + positionX, DrawMethods.currentPlacement.Y + positionY);
+            DrawMethods.currentPlacement = current;
+        }
+
+
+        public static void Update(this State state, Vector2 statePosition, GameTime gameTime, Game1 game1)
         {
             if(state is PlayerVsPlayer)
             {
@@ -62,7 +89,7 @@ namespace CheckersGUI.Update
             }
             else if(state is MenuState)
             {
-                (state as MenuState).Update(statePosition, gameTime);
+                (state as MenuState).Update(statePosition, gameTime, game1);
             }
         }
 

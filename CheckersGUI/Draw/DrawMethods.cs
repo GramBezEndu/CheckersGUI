@@ -16,7 +16,10 @@ namespace CheckersGUI.Draw
         /// <summary>
         /// Board placement related to start of the scene
         /// </summary>
-        public static readonly Vector2 boardPlacement = new Vector2(416, 104);
+        //public static readonly Vector2 boardPlacement = new Vector2(416, 104);
+        public static readonly Vector2 boardPlacementBeg = new Vector2(416, 150);
+        public static readonly Vector2 boardPlacement = new Vector2(224, 104);
+        public static Vector2 currentPlacement = new Vector2(416, 150);
         /// <summary>
         /// Draw method for pawns and squares
         /// </summary>
@@ -92,6 +95,14 @@ namespace CheckersGUI.Draw
             game.PlaySong(Game1.Songs["PlayTheme"]);
         }
 
+
+        public enum AnimationState
+        {
+            PlayerVsPlayer,
+            PlayerVsComputer,
+            None
+        }
+        public static AnimationState animationState = AnimationState.None;
         public static IButton playVsPlayer;
         public static IButton playVsComputer;
         public static IButton backButton;
@@ -103,23 +114,32 @@ namespace CheckersGUI.Draw
             {
                 Position = new Vector2(20, 300),
                 Color = Color.White,
-                OnClick = (o, e) => Game1.GameReference.ChangeState(new PlayerVsPlayer())
+                OnClick = (o, e) => animationState = AnimationState.PlayerVsPlayer
+                //Game1.GameReference.ChangeState(new PlayerVsPlayer())
             };
             playVsComputer = new TextButton(Game1.inputManager, Game1.Font, "Player vs Computer")
             {
                 Position = new Vector2(playVsPlayer.Position.X, 300 + playVsPlayer.Size.Y),
                 Color = Color.White,
-                OnClick = (o, e) => Game1.GameReference.ChangeState(new PlayerVsComputer())
+                OnClick = (o, e) => animationState = AnimationState.PlayerVsComputer
+                //Game1.GameReference.ChangeState(new PlayerVsComputer())
             };
             game.PlaySong(Game1.Songs["MainMenu"]);
+            DrawMethods.animationState = DrawMethods.AnimationState.None;
+            DrawMethods.currentPlacement = DrawMethods.boardPlacementBeg;
         }
 
         public static void Draw(this MenuState menuState, Vector2 statePosition, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Game1.Textures["DarkWood"], new Vector2(0, 0), null, Color.OrangeRed, 0f, new Vector2(0, 0), new Vector2(1f, 1f), SpriteEffects.None, 0f);
-            spriteBatch.DrawString(Game1.LargeFont, "CHECKERS", new Vector2(960/2 - Game1.LargeFont.MeasureString("CHECKERS").X/2, 50), Color.White);
-            playVsPlayer.Draw(spriteBatch);
-            playVsComputer.Draw(spriteBatch);
+            if (DrawMethods.animationState == DrawMethods.AnimationState.None)
+            {
+                spriteBatch.DrawString(Game1.LargeFont, "CHECKERS", new Vector2(960/2 - Game1.LargeFont.MeasureString("CHECKERS").X/2, 50), Color.White);
+                playVsPlayer.Draw(spriteBatch);
+                playVsComputer.Draw(spriteBatch);
+            }
+            Board temp = new Board();
+            temp.Draw(new Vector2(statePosition.X + currentPlacement.X, statePosition.Y + currentPlacement.Y), spriteBatch, false);
         }
 
         public static void Draw(this GameState gameState, Vector2 statePosition, SpriteBatch spriteBatch)
@@ -139,7 +159,7 @@ namespace CheckersGUI.Draw
         /// <param name=""></param>
         /// <param name="pos"></param>
         /// <param name="spriteBatch"></param>
-        public static void Draw(this Board board, Vector2 pos, SpriteBatch spriteBatch)
+        public static void Draw(this Board board, Vector2 pos, SpriteBatch spriteBatch, Boolean game = true)
         {
             //Draw squares (hard coded texture width and height)
             for(int i=0;i<board.squares.Length;i++)
@@ -157,14 +177,33 @@ namespace CheckersGUI.Draw
                         (board.squares[i][j] as DrawableComponent).Draw(new Vector2(pos.X + i * 64, pos.Y + j * 64), spriteBatch, Color.White);
                     if(board.squares[i][j] is BrownSquare)
                     {
-                        var pawn = (board.squares[i][j] as BrownSquare).Pawn;
-                        if (pawn != null)
-                            (pawn as DrawableComponent).Draw(new Vector2(pos.X + i * 64, pos.Y + j * 64), spriteBatch, Color.White);
+                        if (game)
+                        {
+                            var pawn = (board.squares[i][j] as BrownSquare).Pawn;
+                            if (pawn != null)
+                                (pawn as DrawableComponent).Draw(new Vector2(pos.X + i * 64, pos.Y + j * 64), spriteBatch, Color.White);
+                        }
                     }
                 }
             }
-            //Draw text: who turn it is
-            spriteBatch.DrawString(Game1.Font, board.TurnMessage, new Vector2(pos.X + 70, pos.Y -32), Color.White);
+            if (game)
+            {
+                //Draw text: who turn it is
+                spriteBatch.DrawString(Game1.Font, board.TurnMessage, new Vector2(pos.X + 135, pos.Y -40), Color.White);
+            }
         }
+
+        //public static void Draw(this Board board, Vector2 pos, Vector2 posEnd, SpriteBatch spriteBatch)
+        //{
+        //    DateTime beg = DateTime.Now;
+        //    DateTime end = beg.AddMilliseconds(1000);
+        //    float placementX, placementY;
+        //    do
+        //    {
+        //        placementX = pos.X + (posEnd.X - pos.X) / ((DateTime.Now - beg).Milliseconds / 1000);
+        //        placementY = pos.Y + (posEnd.Y - pos.Y) / ((DateTime.Now - beg).Milliseconds / 1000);
+        //        board.Draw(new Vector2(placementX, placementY), spriteBatch, false);
+        //    } while (DateTime.Now.CompareTo(end) < 0);
+        //}
     }
 }
