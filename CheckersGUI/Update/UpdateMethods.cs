@@ -37,6 +37,8 @@ namespace CheckersGUI.Update
             //DrawMethods.resetMove.Update(gameTime);
             //DrawMethods.backButton.Update(gameTime);
             playerVsPlayer.board.Update(new Vector2(statePosition.X + DrawMethods.boardPlacement.X, statePosition.Y + DrawMethods.boardPlacement.Y), gameTime);
+            if (playerVsPlayer.board.GameFinished)
+                Game1.GameReference.ChangeState(new EndGame(playerVsPlayer.board.WhiteWon));
         }
 
         public static void Update(this PlayerVsComputer playerVsComp, Vector2 statePosition, GameTime gameTime)
@@ -76,6 +78,8 @@ namespace CheckersGUI.Update
 
                 playerVsComp.board.AcceptMove();
             }
+            if (playerVsComp.board.GameFinished)
+                Game1.GameReference.ChangeState(new EndGame(playerVsComp.board.WhiteWon));
         }
 
         public static void Update(this MenuState menu, Vector2 statePosition, GameTime gameTime, Game1 game1)
@@ -110,10 +114,15 @@ namespace CheckersGUI.Update
             DrawMethods.currentPlacement = current;
         }
 
+        public static void Update(this EndGame endGame, GameTime gameTime)
+        {
+            if (Game1.inputManager.CurrentMouseState.LeftButton == ButtonState.Pressed && Game1.inputManager.PreviousMouseState.LeftButton == ButtonState.Released)
+                Game1.GameReference.ChangeState(new MenuState());
+        }
 
         public static void Update(this State state, Vector2 statePosition, GameTime gameTime, Game1 game1)
         {
-            if(state is PlayerVsPlayer)
+            if (state is PlayerVsPlayer)
             {
                 (state as PlayerVsPlayer).Update(statePosition, gameTime);
             }
@@ -121,9 +130,13 @@ namespace CheckersGUI.Update
             {
                 (state as PlayerVsComputer).Update(statePosition, gameTime);
             }
-            else if(state is MenuState)
+            else if (state is MenuState)
             {
                 (state as MenuState).Update(statePosition, gameTime, game1);
+            }
+            else if (state is EndGame)
+            {
+                (state as EndGame).Update(gameTime);
             }
         }
 

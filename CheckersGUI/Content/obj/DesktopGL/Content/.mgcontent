@@ -4,21 +4,21 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/Accept.png</File>
-    <File>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/Back.png</File>
-    <File>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/BlackDame.png</File>
-    <File>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/BlackMan.png</File>
-    <File>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/BrownSquare.png</File>
-    <File>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/DarkWood.png</File>
-    <File>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/Font.spritefont</File>
-    <File>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/FontBig.spritefont</File>
-    <File>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/Reset.png</File>
-    <File>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/Songs/MainMenu.mp3</File>
-    <File>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/Songs/PlayTheme.mp3</File>
-    <File>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/Sounds/WrongMove.wav</File>
-    <File>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/WhiteDame.png</File>
-    <File>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/WhiteMan.png</File>
-    <File>/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/WhiteSquare.png</File>
+    <File>C:/Users/Jakub/Desktop/CheckersGUI/CheckersGUI/Content/Accept.png</File>
+    <File>C:/Users/Jakub/Desktop/CheckersGUI/CheckersGUI/Content/Back.png</File>
+    <File>C:/Users/Jakub/Desktop/CheckersGUI/CheckersGUI/Content/BlackDame.png</File>
+    <File>C:/Users/Jakub/Desktop/CheckersGUI/CheckersGUI/Content/BlackMan.png</File>
+    <File>C:/Users/Jakub/Desktop/CheckersGUI/CheckersGUI/Content/BrownSquare.png</File>
+    <File>C:/Users/Jakub/Desktop/CheckersGUI/CheckersGUI/Content/DarkWood.png</File>
+    <File>C:/Users/Jakub/Desktop/CheckersGUI/CheckersGUI/Content/Font.spritefont</File>
+    <File>C:/Users/Jakub/Desktop/CheckersGUI/CheckersGUI/Content/FontBig.spritefont</File>
+    <File>C:/Users/Jakub/Desktop/CheckersGUI/CheckersGUI/Content/Reset.png</File>
+    <File>C:/Users/Jakub/Desktop/CheckersGUI/CheckersGUI/Content/Songs/MainMenu.mp3</File>
+    <File>C:/Users/Jakub/Desktop/CheckersGUI/CheckersGUI/Content/Songs/PlayTheme.mp3</File>
+    <File>C:/Users/Jakub/Desktop/CheckersGUI/CheckersGUI/Content/Sounds/WrongMove.wav</File>
+    <File>C:/Users/Jakub/Desktop/CheckersGUI/CheckersGUI/Content/WhiteDame.png</File>
+    <File>C:/Users/Jakub/Desktop/CheckersGUI/CheckersGUI/Content/WhiteMan.png</File>
+    <File>C:/Users/Jakub/Desktop/CheckersGUI/CheckersGUI/Content/WhiteSquare.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

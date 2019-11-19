@@ -54,14 +54,16 @@ namespace CheckersGUI.Draw
 
         public static void Draw(this State state, Vector2 statePosition, SpriteBatch spriteBatch)
         {
-            if(state is GameState)
+            if (state is GameState)
             {
                 (state as GameState).Draw(statePosition, spriteBatch);
             }
-            else if(state is MenuState)
+            else if (state is MenuState)
             {
                 (state as MenuState).Draw(statePosition, spriteBatch);
             }
+            else if (state is EndGame)
+                (state as EndGame).Draw(spriteBatch);
         }
 
         public static void Init(this State state, Game1 game)
@@ -199,6 +201,20 @@ namespace CheckersGUI.Draw
                 //Draw text: who turn it is
                 spriteBatch.DrawString(Game1.Font, board.TurnMessage, new Vector2(pos.X + 135, pos.Y -40), new Color(230, 210, 190));
             }
+        }
+
+        public static void Draw(this EndGame endGame, SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(Game1.Textures["DarkWood"], new Vector2(0, 0), null, Color.OrangeRed, 0f, new Vector2(0, 0), new Vector2(1f, 1f), SpriteEffects.None, 0f);
+            if(endGame.WhiteWon)
+            {
+                spriteBatch.DrawString(Game1.LargeFont, "WHITE WON", new Vector2(960 / 2 - Game1.LargeFont.MeasureString("WHITE WON").X / 2, 50), new Color(230, 210, 190));
+            }
+            else
+            {
+                spriteBatch.DrawString(Game1.LargeFont, "BLACK WON", new Vector2(960 / 2 - Game1.LargeFont.MeasureString("BLACK WON").X / 2, 50), new Color(230, 210, 190));
+            }
+            spriteBatch.DrawString(Game1.Font, "Press Left Mouse Button to go back", new Vector2(960 / 2 - Game1.Font.MeasureString("Press Left Mouse Button to go back").X / 2, 500), new Color(230, 210, 190));
         }
 
         //public static void Draw(this Board board, Vector2 pos, Vector2 posEnd, SpriteBatch spriteBatch)
