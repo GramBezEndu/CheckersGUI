@@ -125,11 +125,19 @@ namespace CheckersGUI.Update
                 //Ruch komputera
                 RandomComputerAgent agent = new RandomComputerAgent(playerVsComp.board);
                 // Wyszukanie najlepszego rozwiązania
-                (Pawn, List<BrownSquare>) move = agent.SearchForBestMove();
-                playerVsComp.board.SetSelectedSquareAsStart((BrownSquare)move.Item1.Position);
-                playerVsComp.board.selectedSquaresToEnd = move.Item2;
+                try
+                {
+                    (Pawn, List<BrownSquare>) move = agent.SearchForBestMove();
+                    playerVsComp.board.SetSelectedSquareAsStart((BrownSquare)move.Item1.Position);
+                    playerVsComp.board.selectedSquaresToEnd = move.Item2;
 
-                playerVsComp.board.AcceptMove();
+                    playerVsComp.board.AcceptMove();
+                }
+                catch (Exception e)
+                {
+                    if (playerVsComp.board.GameFinished)
+                        Game1.GameReference.ChangeState(new EndGame(playerVsComp.board.WhiteWon));
+                }
             }
             if (playerVsComp.board.GameFinished)
                 Game1.GameReference.ChangeState(new EndGame(playerVsComp.board.WhiteWon));
