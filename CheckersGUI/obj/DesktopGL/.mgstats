@@ -1,4 +1,0 @@
-Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/Accept.png","/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/bin/DesktopGL/Accept.xnb","TextureProcessor","Texture2DContent",45544,458837,0,216801
-"/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/Back.png","/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/bin/DesktopGL/Back.xnb","TextureProcessor","Texture2DContent",39261,222805,0,015887
-"/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/Reset.png","/Users/pawelbak/Projects/CheckersGUI/CheckersGUI/Content/bin/DesktopGL/Reset.xnb","TextureProcessor","Texture2DContent",45238,458837,0,027107
