@@ -112,6 +112,9 @@ namespace CheckersGUI.Draw
         public static AnimationState animationState = AnimationState.None;
         public static IButton playVsPlayer;
         public static IButton playVsComputer;
+        public static bool accept = true;
+        public static bool reset = true;
+        public static bool back = true;
         //public static IButton backButton;
         //public static IButton acceptMove;
         //public static IButton resetMove;
@@ -155,9 +158,30 @@ namespace CheckersGUI.Draw
             //Draw text: what gamemode it is
             spriteBatch.DrawString(Game1.Font, gameState.GetType().Name, new Vector2(statePosition.X, statePosition.Y), new Color(230, 210, 190));
             gameState.board.Draw(new Vector2(statePosition.X + boardPlacement.X, statePosition.Y + boardPlacement.Y), spriteBatch);
-            spriteBatch.Draw(Game1.Textures["Accept"], new Rectangle(5, 104, 214, 512), Color.White);
-            spriteBatch.Draw(Game1.Textures["Reset"], new Rectangle(741, 104, 214, 512), Color.White);
-            spriteBatch.Draw(Game1.Textures["Back"], new Rectangle(5, 621, 950, 58), Color.White);
+            if (accept)
+            {
+                spriteBatch.Draw(Game1.Textures["Accept"], new Rectangle(5, 104, 214, 512), Color.White);
+            }
+            else
+            {
+                spriteBatch.Draw(Game1.Textures["Accept"], new Rectangle(5, 104, 214, 512), Color.Green);
+            }
+            if (back)
+            {
+                spriteBatch.Draw(Game1.Textures["Reset"], new Rectangle(741, 104, 214, 512), Color.White);
+            }
+            else
+            {
+                spriteBatch.Draw(Game1.Textures["Reset"], new Rectangle(741, 104, 214, 512), Color.Red);
+            }
+            if (reset)
+            {
+                spriteBatch.Draw(Game1.Textures["Back"], new Rectangle(5, 621, 950, 58), Color.White);
+            }
+            else
+            {
+                spriteBatch.Draw(Game1.Textures["Back"], new Rectangle(5, 621, 950, 58), Color.Red);
+            }
             //acceptMove.Draw(spriteBatch);
             //resetMove.Draw(spriteBatch);
             //backButton.Draw(spriteBatch);

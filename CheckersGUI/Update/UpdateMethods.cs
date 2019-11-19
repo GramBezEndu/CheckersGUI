@@ -31,6 +31,32 @@ namespace CheckersGUI.Update
                 {
                     Game1.GameReference.ChangeState(new MenuState());
                 }
+            } else
+            {
+                if (mouseRectangle.Intersects(new Rectangle(5, 104, 214, 512)))
+                {
+                    DrawMethods.accept = false;
+                }
+                else
+                {
+                    DrawMethods.accept = true;
+                }
+                if (mouseRectangle.Intersects(new Rectangle(741, 104, 214, 512)))
+                {
+                    DrawMethods.back = false;
+                }
+                else
+                {
+                    DrawMethods.back = true;
+                }
+                if (mouseRectangle.Intersects(new Rectangle(5, 621, 950, 58)))
+                {
+                    DrawMethods.reset = false;
+                }
+                else
+                {
+                    DrawMethods.reset = true;
+                }
             }
 
             //DrawMethods.acceptMove.Update(gameTime);
@@ -57,6 +83,33 @@ namespace CheckersGUI.Update
                 if (mouseRectangle.Intersects(new Rectangle(5, 621, 950, 58)))
                 {
                     Game1.GameReference.ChangeState(new MenuState());
+                }
+            }
+            else
+            {
+                if (mouseRectangle.Intersects(new Rectangle(5, 104, 214, 512)))
+                {
+                    DrawMethods.accept = false;
+                }
+                else
+                {
+                    DrawMethods.accept = true;
+                }
+                if (mouseRectangle.Intersects(new Rectangle(741, 104, 214, 512)))
+                {
+                    DrawMethods.back = false;
+                }
+                else
+                {
+                    DrawMethods.back = true;
+                }
+                if (mouseRectangle.Intersects(new Rectangle(5, 621, 950, 58)))
+                {
+                    DrawMethods.reset = false;
+                }
+                else
+                {
+                    DrawMethods.reset = true;
                 }
             }
             //DrawMethods.acceptMove.Update(gameTime);
