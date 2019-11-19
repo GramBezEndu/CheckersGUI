@@ -74,24 +74,24 @@ namespace CheckersGUI.Draw
 
         public static void Init(this GameState gameState, Game1 game)
         {
-            acceptMove = new TextButton(Game1.inputManager, Game1.Font, "Accept move")
-            {
-                Position = new Vector2(20, 300),
-                Color = Color.White,
-                OnClick = (o, e) => gameState.board.AcceptMove()
-            };
-            resetMove = new TextButton(Game1.inputManager, Game1.Font, "Reset move")
-            {
-                Position = new Vector2(acceptMove.Position.X, acceptMove.Position.Y + acceptMove.Size.Y),
-                Color = Color.White,
-                OnClick = (o, e) => gameState.board.ResetMove()
-        };
-            backButton = new TextButton(Game1.inputManager, Game1.Font, "Back")
-            {
-                Position = new Vector2(20, 600),
-                Color = Color.White,
-                OnClick = (o, e) => Game1.GameReference.ChangeState(new MenuState())
-            };
+            //acceptMove = new TextButton(Game1.inputManager, Game1.Font, "Accept move")
+            //{
+            //    Position = new Vector2(20, 300),
+            //    Color = Color.White,
+            //    OnClick = (o, e) => gameState.board.AcceptMove()
+            //};
+            //resetMove = new TextButton(Game1.inputManager, Game1.Font, "Reset move")
+            //{
+            //    Position = new Vector2(acceptMove.Position.X, acceptMove.Position.Y + acceptMove.Size.Y),
+            //    Color = Color.White,
+            //    OnClick = (o, e) => gameState.board.ResetMove()
+            //};
+            //backButton = new TextButton(Game1.inputManager, Game1.Font, "Back")
+            //{
+            //    Position = new Vector2(20, 600),
+            //    Color = Color.White,
+            //    OnClick = (o, e) => Game1.GameReference.ChangeState(new MenuState())
+            //};
             game.PlaySong(Game1.Songs["PlayTheme"]);
             gameState.board.OnWrongMove += PlayWrongMoveSound;
         }
@@ -110,9 +110,9 @@ namespace CheckersGUI.Draw
         public static AnimationState animationState = AnimationState.None;
         public static IButton playVsPlayer;
         public static IButton playVsComputer;
-        public static IButton backButton;
-        public static IButton acceptMove;
-        public static IButton resetMove;
+        //public static IButton backButton;
+        //public static IButton acceptMove;
+        //public static IButton resetMove;
         public static void Init(this MenuState menu, Game1 game)
         {
             playVsPlayer = new TextButton(Game1.inputManager, Game1.Font, "Player vs Player")
@@ -153,9 +153,12 @@ namespace CheckersGUI.Draw
             //Draw text: what gamemode it is
             spriteBatch.DrawString(Game1.Font, gameState.GetType().Name, new Vector2(statePosition.X, statePosition.Y), new Color(230, 210, 190));
             gameState.board.Draw(new Vector2(statePosition.X + boardPlacement.X, statePosition.Y + boardPlacement.Y), spriteBatch);
-            acceptMove.Draw(spriteBatch);
-            resetMove.Draw(spriteBatch);
-            backButton.Draw(spriteBatch);
+            spriteBatch.Draw(Game1.Textures["Accept"], new Rectangle(5, 104, 214, 512), Color.White);
+            spriteBatch.Draw(Game1.Textures["Reset"], new Rectangle(741, 104, 214, 512), Color.White);
+            spriteBatch.Draw(Game1.Textures["Back"], new Rectangle(5, 621, 950, 58), Color.White);
+            //acceptMove.Draw(spriteBatch);
+            //resetMove.Draw(spriteBatch);
+            //backButton.Draw(spriteBatch);
         }
 
         /// <summary>

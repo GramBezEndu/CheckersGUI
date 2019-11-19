@@ -15,17 +15,51 @@ namespace CheckersGUI.Update
     {
         public static void Update(this PlayerVsPlayer playerVsPlayer, Vector2 statePosition, GameTime gameTime)
         {
-            DrawMethods.acceptMove.Update(gameTime);
-            DrawMethods.resetMove.Update(gameTime);
-            DrawMethods.backButton.Update(gameTime);
+
+            var mouseRectangle = new Rectangle(Game1.inputManager.CurrentMouseState.X, Game1.inputManager.CurrentMouseState.Y, 1, 1);
+            if (Game1.inputManager.CurrentMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed && Game1.inputManager.PreviousMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Released)
+            {
+                if (mouseRectangle.Intersects(new Rectangle(5, 104, 214, 512)))
+                {
+                    playerVsPlayer.board.AcceptMove();
+                }
+                if (mouseRectangle.Intersects(new Rectangle(741, 104, 214, 512)))
+                {
+                    playerVsPlayer.board.ResetMove();
+                }
+                if (mouseRectangle.Intersects(new Rectangle(5, 621, 950, 58)))
+                {
+                    Game1.GameReference.ChangeState(new MenuState());
+                }
+            }
+
+            //DrawMethods.acceptMove.Update(gameTime);
+            //DrawMethods.resetMove.Update(gameTime);
+            //DrawMethods.backButton.Update(gameTime);
             playerVsPlayer.board.Update(new Vector2(statePosition.X + DrawMethods.boardPlacement.X, statePosition.Y + DrawMethods.boardPlacement.Y), gameTime);
         }
 
         public static void Update(this PlayerVsComputer playerVsComp, Vector2 statePosition, GameTime gameTime)
         {
-            DrawMethods.acceptMove.Update(gameTime);
-            DrawMethods.resetMove.Update(gameTime);
-            DrawMethods.backButton.Update(gameTime);
+            var mouseRectangle = new Rectangle(Game1.inputManager.CurrentMouseState.X, Game1.inputManager.CurrentMouseState.Y, 1, 1);
+            if (Game1.inputManager.CurrentMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed && Game1.inputManager.PreviousMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Released)
+            {
+                if (mouseRectangle.Intersects(new Rectangle(5, 104, 214, 512)))
+                {
+                    playerVsComp.board.AcceptMove();
+                }
+                if (mouseRectangle.Intersects(new Rectangle(741, 104, 214, 512)))
+                {
+                    playerVsComp.board.ResetMove();
+                }
+                if (mouseRectangle.Intersects(new Rectangle(5, 621, 950, 58)))
+                {
+                    Game1.GameReference.ChangeState(new MenuState());
+                }
+            }
+            //DrawMethods.acceptMove.Update(gameTime);
+            //DrawMethods.resetMove.Update(gameTime);
+            //DrawMethods.backButton.Update(gameTime);
             if (playerVsComp.board.IsWhiteTurn)
             {
                 playerVsComp.board.Update(new Vector2(statePosition.X + DrawMethods.boardPlacement.X, statePosition.Y + DrawMethods.boardPlacement.Y), gameTime);
